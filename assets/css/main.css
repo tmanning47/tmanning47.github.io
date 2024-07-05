@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300italic,600,600italic");
 
 /*
+grey dark: #2f2f2f Grey light: #626262 Grey Mid: #484848   Purple Accent: #4900a5
 	Arcana by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
@@ -2470,7 +2471,7 @@ input, select, textarea {
 			input[type="button"].alt:active,
 			button.alt:active,
 			.button.alt:active {
-				background-color: #2f2f2f;
+				background-color: #484848;
 			}
 
 		input[type="submit"].icon:before,
@@ -2565,7 +2566,7 @@ input, select, textarea {
 			display: block;
 			width: 100%;
 			height: 0.75em;
-			background-color: #2f2f2f;
+			background-color: #626262;
 			background-image: url("images/bg01.png");
 		}
 
