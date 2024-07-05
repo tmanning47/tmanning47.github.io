@@ -2435,7 +2435,7 @@ input, select, textarea {
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: #50c8fc;
+			background-color: #6f6f6f;
 			color: #fff !important;
 		}
 
@@ -2444,7 +2444,7 @@ input, select, textarea {
 		input[type="button"]:active,
 		button:active,
 		.button:active {
-			background-color: #1eb8fb;
+			background-color: #484848;
 			color: #fff;
 		}
 
@@ -2470,7 +2470,7 @@ input, select, textarea {
 			input[type="button"].alt:active,
 			button.alt:active,
 			.button.alt:active {
-				background-color: #484848;
+				background-color: #2f2f2f;
 			}
 
 		input[type="submit"].icon:before,
@@ -2612,7 +2612,7 @@ input, select, textarea {
 						bottom: -0.5em;
 						left: 50%;
 						margin-left: -0.375em;
-						background-color: #37c0fb;
+						background-color: #626262;
 						background-image: url("images/bg01.png");
 					}
 
