@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>About Me</title>
+		<title>Travis W Manning</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -23,7 +23,7 @@
 					<!-- Nav -->
 						<nav id="nav">
 							<ul>
-								<li><a href="index.html">Home</a></li>
+								<li class="current"><a href="index.html">Home</a></li>
 								<li>
 									<a href="#">Directory</a>
 									<ul>
@@ -43,43 +43,115 @@
 										<li><a href="#">Music & Playlists</a></li>
 									</ul>
 								</li>
-		<!--	comment out extra header buttons	<li><a href="left-sidebar.html">Left Sidebar</a></li>
+<!-- comment out extra header bar buttons			<li><a href="left-sidebar.html">Left Sidebar</a></li>
 								<li><a href="right-sidebar.html">Right Sidebar</a></li>
 								<li><a href="two-sidebar.html">Two Sidebar</a></li>
-		-->						<li class="current"><a href="aboutme.html">About Me</a></li>
+-->								<li><a href="aboutme.html">About Me</a></li>
 							</ul>
 						</nav>
 
 				</div>
 
-			<!-- Main -->
+			<!-- Banner -->
+				<section id="banner">
+					<header>
+						<h2>Who am I? <em> Who cares! But I do a lot of stuff, and often like to share it!</em></h2>
+						<a href="http://traviswmanning.com/aboutme" class="button">Learn More</a>
+					</header>
+				</section>
+
+			<!-- Highlights -->
 				<section class="wrapper style1">
 					<div class="container">
-						<div id="content">
-
-							<!-- Content -->
-
-								<article>
-									<header>
-										<h2>About Me:</h2>
-										<p>Travis Manning</p>
-									</header>
-
-									<span class="image featured"><img src="images/banner.jpg" alt="" /></span>
-
-									<p>I.T Specialist, Photographer, Musician, Share-er of stuff</p>
-
-									<h3>Who I am & what I do:</h3>
-									<p>I wear many hats! By day, you will find me providing support as an IT Support Specialist. After hours, it's time to learn & experiment.  
-									This website is my hub for sharing the things I'm passionate about. You'll find a mix of practical resources like project write-ups, configuration guides, 
-									and downloadable files to fuel your own adventures. A bit of a mix of work and play! </p>
-
-									<p>I'm also a music enthusiast & audiophile. Here, I'll be sharing curated playlists  
-									alongside my own original music (coming in the future!). Website will contain varying percentages of the following ingredients: Photography, art, gaming, simulators, music theory, etc.. 
-									Dive in, explore, and feel free to check out the content on any of my YouTube channels or social media!</p>
-								</article>
-
+						<div class="row gtr-200">
+							<section class="col-4 col-12-narrower">
+								<div class="box highlight">
+									<i class="icon solid major fa-paper-plane"></i>
+									<h3>Passions & Hobbies</h3>
+									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+								</div>
+							</section>
+							<section class="col-4 col-12-narrower">
+								<div class="box highlight">
+									<i class="icon solid major fa-pencil-alt"></i>
+									<h3>Art & Photography</h3>
+									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+								</div>
+							</section>
+							<section class="col-4 col-12-narrower">
+								<div class="box highlight">
+									<i class="icon solid major fa-wrench"></i>
+									<h3>Professional Support</h3>
+									<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+								</div>
+							</section>
 						</div>
+					</div>
+				</section>
+
+			<!-- Gigantic Heading -->
+				<section class="wrapper style2">
+					<div class="container">
+						<header class="major">
+							<h2>Resources - Tools - Guides - Products</h2>
+							<p>Learn & explore with me</p>
+						</header>
+					</div>
+				</section>
+
+			<!-- Posts -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row">
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic01.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>Music Production & Theory Resources</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic02.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>Lightsaber Soundfonts</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="row">
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic03.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>The Third Thing</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+							<section class="col-6 col-12-narrower">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/pic04.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>The Fourth Thing</h3>
+										<p>Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.</p>
+									</div>
+								</div>
+							</section>
+						</div>
+					</div>
+				</section>
+
+			<!-- CTA -->
+				<section id="cta" class="wrapper style3">
+					<div class="container">
+						<header>
+							<h2>Are you ready to continue your quest?</h2>
+							<a href="#" class="button">Insert Coin</a>
+						</header>
 					</div>
 				</section>
 

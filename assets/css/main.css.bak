@@ -2436,7 +2436,7 @@ input, select, textarea {
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: #636363;
+			background-color: #565656;
 			color: #fff !important;
 		}
 
@@ -2463,7 +2463,7 @@ input, select, textarea {
 			input[type="button"].alt:hover,
 			button.alt:hover,
 			.button.alt:hover {
-				background-color: #636363;
+				background-color: #565656;
 			}
 
 			input[type="submit"].alt:active,

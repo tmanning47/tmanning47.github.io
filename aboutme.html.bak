@@ -18,7 +18,7 @@
 				<div id="header">
 
 					<!-- Logo -->
-						<h1><a href="index.html" id="logo">Travis Manning <em> - Projects and Sharing</em></a></h1>
+						<h1><a href="index.html" id="logo">Arcana <em>by HTML5 UP</em></a></h1>
 
 					<!-- Nav -->
 						<nav id="nav">
@@ -27,20 +27,20 @@
 								<li>
 									<a href="#">Directory</a>
 									<ul>
-										<li><a href="#">Work & Career</a></li>
-										<li><a href="#">Projects</a></li>
-										<li><a href="#">Gaming</a></li>
+										<li><a href="#">Lorem dolor</a></li>
+										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Etiam sed tempus</a></li>
 										<li>
-											<a href="#">Learning Resources</a>
+											<a href="#">Submenu</a>
 											<ul>
-												<li><a href="#">Music Theory</a></li>
-												<li><a href="#">Option 2</a></li>
-												<li><a href="#">Option 3</a></li>
-												<li><a href="#">Option 4</a></li>
-												<li><a href="#">Option 5</a></li>
+												<li><a href="#">Lorem dolor</a></li>
+												<li><a href="#">Phasellus magna</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Etiam nisl</a></li>
+												<li><a href="#">Veroeros feugiat</a></li>
 											</ul>
 										</li>
-										<li><a href="#">Music & Playlists</a></li>
+										<li><a href="#">Veroeros feugiat</a></li>
 									</ul>
 								</li>
 		<!--	comment out extra header buttons	<li><a href="left-sidebar.html">Left Sidebar</a></li>
@@ -76,7 +76,7 @@
 
 									<p>I'm also a music enthusiast & audiophile. Here, I'll be sharing curated playlists  
 									alongside my own original music (coming in the future!). Website will contain varying percentages of the following ingredients: Photography, art, gaming, simulators, music theory, etc.. 
-									Dive in, explore, and feel free to check out the content on any of my YouTube channels or social media!</p>
+									Dive in, explore, enjoy the content and feel free to see what I get up to through the links to my YouTube channels and social media!</p>
 								</article>
 
 						</div>
