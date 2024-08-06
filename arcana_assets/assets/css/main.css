@@ -83,7 +83,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #f7f7f7 url("images/bg01.png");
+		background: #f7f7f7 url("arcana_assets/images/bg01.png");
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -2148,10 +2148,10 @@ input, select, textarea {
 			text-align: center;
 			cursor: default;
 			background-color: #37c0fb;
-			background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
-			background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
-			background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
-			background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("images/bg01.png");
+			background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("arcana_assets/images/bg01.png");
+			background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("arcana_assets/images/bg01.png");
+			background-image: -ms-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("arcana_assets/images/bg01.png");
+			background-image: linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.15)), url("arcana_assets/images/bg01.png");
 			color: #fff;
 			border-radius: 100%;
 			display: inline-block;
@@ -2674,7 +2674,7 @@ input, select, textarea {
 /* Banner */
 
 	#banner {
-		background-image: url("../../images/banner.jpg");
+		background-image: url("../..arcana_assets/images/banner.jpg");
 		background-position: center center;
 		background-size: cover;
 		height: 28em;
