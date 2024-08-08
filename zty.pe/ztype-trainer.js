@@ -263,17 +263,17 @@
             
             machineGunFaster2: function () {
                 cheatOn('machineGun', 120);
-                machineGunState = 3;
+                machineGunState = 4;
             },
             
             machineGunFaster3: function () {
                 cheatOn('machineGun', 66);
-                machineGunState = 3;
+                machineGunState = 5;
             },
             
             machineGunFastest: function () {
                 cheatOn('machineGun', 22);
-                machineGunState = 3;
+                machineGunState = 6;
             },
 
             machineGunOff: function () {
