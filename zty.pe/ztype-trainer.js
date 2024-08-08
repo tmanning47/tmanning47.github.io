@@ -204,7 +204,7 @@
             },
 
             aLotOfFastEnemies: function () {
-                ig.game.speedFactor = 4;
+                ig.game.speedFactor = 1.5;
                 window.trainer.aLotOfEnemies();
             },
 
@@ -247,13 +247,18 @@
             },
 
             machineGun: function () {
-                cheatOn('machineGun', 120);
+                cheatOn('machineGun', 250);
                 machineGunState = 1;
             },
 
             machineGunFast: function () {
-                cheatOn('machineGun', 22);
+                cheatOn('machineGun', 120);
                 machineGunState = 2;
+            },
+            
+            machineGunFaster: function () {
+                cheatOn('machineGun', 22);
+                machineGunState = 3;
             },
 
             machineGunOff: function () {
@@ -271,6 +276,9 @@
                         window.trainer.machineGunFast();
                         break;
                     case 2:
+                        window.trainer.machineGunFaster();
+                        break;
+                    case 3:
                         window.trainer.machineGunOff();
                         break;
                 }
