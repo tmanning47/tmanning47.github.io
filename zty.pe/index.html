@@ -235,38 +235,39 @@
   }
 </script>
  -->
- <!--
+ 
 <script>
-  function loadScript(src) {
-    const script = document.createElement('script');
-    script.src = src;
-    script.async = true;
-    document.head.appendChild(script);
+function loadScript(src) {
+  const script = document.createElement('script');
+  script.src = src;
+  script.async = true;
+  document.head.appendChild(script);
+}
+
+const mediaQuery = window.matchMedia('(max-width: 768px)'); // Adjust breakpoint as needed
+
+function handleMediaQueryChange(e) {
+  if (e.matches) {
+    loadScript('mobile_ztype.min.js');
+  } else {
+    loadScript('ztype.min.js');
   }
+}
 
-  const mediaQuery = window.matchMedia('(max-width: 767px)');
+mediaQuery.addListener(handleMediaQueryChange);
+handleMediaQueryChange(mediaQuery);
 
-  function handleMediaQueryChange(e) {
-    if (e.matches) {
-      loadScript('mobile_ztype.min.js');
-    } else {
-      loadScript('ztype.min.js');
-    }
-  }
-
-  mediaQuery.addListener(handleMediaQueryChange);
-  handleMediaQueryChange(mediaQuery);
-</script>
--->
-<script>
-if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-  // true for mobile device
-  document.write('<script type="text/javascript" src="mobile_ztype.min.js" charset="UTF-8"></script>');
-}else{
-  // false for not mobile device
-  document.write('<script type="text/javascript" src="ztype.min.js" charset="UTF-8"></script>');
+// Optional: Additional iOS-specific considerations
+if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+  // Add specific iOS-related code here
+  // For example:
+  // - Handling touch events
+  // - Optimizing performance
+  // - Implementing specific features for iOS
 }
 </script>
+
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
