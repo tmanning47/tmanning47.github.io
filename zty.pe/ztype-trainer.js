@@ -247,16 +247,31 @@
             },
 
             machineGun: function () {
-                cheatOn('machineGun', 250);
+                cheatOn('machineGun', 550);
                 machineGunState = 1;
             },
 
             machineGunFast: function () {
-                cheatOn('machineGun', 120);
+                cheatOn('machineGun', 400);
                 machineGunState = 2;
             },
             
             machineGunFaster: function () {
+                cheatOn('machineGun', 250);
+                machineGunState = 3;
+            },
+            
+            machineGunFaster2: function () {
+                cheatOn('machineGun', 120);
+                machineGunState = 3;
+            },
+            
+            machineGunFaster3: function () {
+                cheatOn('machineGun', 66);
+                machineGunState = 3;
+            },
+            
+            machineGunFastest: function () {
                 cheatOn('machineGun', 22);
                 machineGunState = 3;
             },
@@ -279,6 +294,15 @@
                         window.trainer.machineGunFaster();
                         break;
                     case 3:
+                        window.trainer.machineGunFaster2();
+                        break;
+                    case 4:
+                        window.trainer.machineGunFaster3();
+                        break;
+                    case 5:
+                        window.trainer.machineGunFastest();
+                        break;
+                    case 6:
                         window.trainer.machineGunOff();
                         break;
                 }
