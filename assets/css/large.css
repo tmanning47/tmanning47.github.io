@@ -22,6 +22,7 @@ section, summary, time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
+    width: 4000;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;}
@@ -189,7 +190,7 @@ input, select, textarea {
 	.container {
 		margin: 0 auto;
 		max-width: 4000;
-		width: 1400px;
+		width: 4000px;
 	}
 
 		@media screen and (max-width: 1680px) {
