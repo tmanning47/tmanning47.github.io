@@ -22,7 +22,7 @@ section, summary, time, mark, audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
-    width: 3000px;
+    width: 3000;
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;}
@@ -30,7 +30,7 @@ section, summary, time, mark, audio, video {
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	/*display: block;*/
-    width: 3000px;
+    width: 3000;
 }
 
 body {
@@ -191,7 +191,7 @@ input, select, textarea {
 
 	.container {
 		margin: 0 auto;
-		max-width: 3000px;
+		max-width: 3000;
 		width: 3000px;
 	}
 
@@ -238,7 +238,7 @@ input, select, textarea {
 		@media screen and (max-width: 480px) {
 
 			.container {
-				width: 3000px;
+				width: 3000;
 			}
 
 		}
@@ -2556,7 +2556,7 @@ input, select, textarea {
 
 	#nav {
 		cursor: default;
-        width: 3000px;
+        width: 3000;
 		background-color: #333;
 		background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
 		background-image: -webkit-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
@@ -2568,7 +2568,7 @@ input, select, textarea {
 		#nav:after {
 			content: '';
 			display: block;
-			width: 3000px;
+			width: 3000;
 			height: 0.75em;
 			background-color: #494949;
 			background-image: url("images/bg01.png");
@@ -2691,7 +2691,7 @@ input, select, textarea {
 			position: absolute;
 			bottom: 0;
 			left: 0;
-			width: 3000px;
+			width: 3000;
 			background: #212121;
 			background: rgba(27, 27, 27, 0.75);
 			color: #fff;
@@ -3028,7 +3028,7 @@ input, select, textarea {
 					-webkit-justify-content: center;
 					-ms-justify-content: center;
 					justify-content: center;
-					width: 3000px;
+					width: 3000;
 					margin-left: 0;
 				}
 
@@ -3065,7 +3065,7 @@ input, select, textarea {
 				left: 0;
 				position: fixed;
 				top: 0;
-				width: 3000px;
+				width: 3000;
 				z-index: 10001;
 				background-color: #333;
 				background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
