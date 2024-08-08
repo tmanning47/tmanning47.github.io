@@ -225,13 +225,36 @@
         display: none;
       }
     </style>
- <!--   <script type="text/javascript" src="ztype.min.js" charset="UTF-8"></script> -->
+ <!--   <script type="text/javascript" src="ztype.min.js" charset="UTF-8"></script> 
  <script>
   if (window.innerWidth < 900) { // Adjust breakpoint as needed
     document.write('<script type="text/javascript" src="mobile_ztype.min.js" charset="UTF-8"></script>');
   } else {
     document.write('<script type="text/javascript" src="ztype.min.js" charset="UTF-8"></script>');
   }
+  -->
+  <script>
+  function loadScript(src) {
+    const script = document.createElement('script');
+    script.src = src;
+    script.async = true;
+    document.head.appendChild(script);
+  }
+
+  const mediaQuery = window.matchMedia('(max-width: 767px)');
+
+  function handleMediaQueryChange(e) {
+    if (e.matches) {
+      loadScript('mobile_ztype.min.js');
+    } else {
+      loadScript('ztype.min.js');
+    }
+  }
+
+  mediaQuery.addListener(handleMediaQueryChange);
+  handleMediaQueryChange(mediaQuery);
+</script>
+
 </script>
     <meta
       name="viewport"
