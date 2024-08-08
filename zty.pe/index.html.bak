@@ -226,16 +226,17 @@
       }
     </style>
  <!--   <script type="text/javascript" src="ztype.min.js" charset="UTF-8"></script> -->
- <script>
+<!-- 
+<script>
   if (window.innerWidth < 900) { // Adjust breakpoint as needed
     document.write('<script type="text/javascript" src="mobile_ztype.min.js" charset="UTF-8"></script>');
   } else {
     document.write('<script type="text/javascript" src="ztype.min.js" charset="UTF-8"></script>');
   }
- </script>
+</script>
+ -->
  
- <!--
-  <script>
+<script>
   function loadScript(src) {
     const script = document.createElement('script');
     script.src = src;
@@ -256,7 +257,7 @@
   mediaQuery.addListener(handleMediaQueryChange);
   handleMediaQueryChange(mediaQuery);
 </script>
--->
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no"
@@ -277,7 +278,6 @@
         onclick="void(document.getElementById('ztype-gsense').style.display='none');"
         >Play ZType</a
       >
-    </div>
     <div id="ztype-stats">
       <div id="ztype-stats-content">
         <div id="ztype-stats-close">&#215;</div>
