@@ -1,0 +1,98 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Travis W Manning : No Sidebar</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/large.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="index.html" id="logo">Travis Manning <em> - Projects and Resources</em></a></h1>
+
+					<!-- Nav UPDATE ME-->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li>
+									<a href="#">Dropdown</a>
+									<ul>
+										<li><a href="#">Lorem dolor</a></li>
+										<li><a href="#">Magna phasellus</a></li>
+										<li><a href="#">Etiam sed tempus</a></li>
+										<li>
+											<a href="#">Submenu</a>
+											<ul>
+												<li><a href="#">Lorem dolor</a></li>
+												<li><a href="#">Phasellus magna</a></li>
+												<li><a href="#">Magna phasellus</a></li>
+												<li><a href="#">Etiam nisl</a></li>
+												<li><a href="#">Veroeros feugiat</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Veroeros feugiat</a></li>
+									</ul>
+								</li>
+								<li><a href="left-sidebar.html">Left Sidebar</a></li>
+								<li><a href="right-sidebar.html">Right Sidebar</a></li>
+								<li><a href="two-sidebar.html">Two Sidebar</a></li>
+								<li class="current"><a href="no-sidebar.html">No Sidebar</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div id="content">
+
+							<!-- Content -->
+
+								<article>
+									<header>
+										<h2>Music Theory : Chords & Shapes</h2>
+										<p>Guitar & Piano</p>
+									</header>
+
+									<!--<span class="image featured"><img src="images/banner.jpg" alt="" /></span>-->
+
+							<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTyfuA48E4WuD9w5ccoeJvIkCXPWuUcoRc6y7bHMweaSoTC7V5T9C8KVozkuohMc9XrCgU75gRmL34t/pubhtml?gid=338171689&amp;single=true&amp;widget=true&amp;headers=false" width=100% height=2000px></iframe>
+                                    
+								</article>
+
+						</div>
+					</div>
+				</section>
+
+            <div id="footer"></div> <!-- footer insert via footer.html and script -->
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+            <script>
+                fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                  document.getElementById('footer').innerHTML = data;
+                });
+            </script>
+
+	</body>
+</html>
