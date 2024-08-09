@@ -7,7 +7,6 @@
 <!-- template for menu dropdown
 <li><a href="#">Parent_Option</a><ul>
         <li><a href="suboption1.html">SubOption1</a></li>
-        <li><a href="suboption2.html">SubOption2</a></li>
 </ul></li>
 -->
 <html>
@@ -36,9 +35,12 @@
 										<li><a href="work.html">Work & Career</a></li>
 										<li><a href="projects.html">Projects</a></li>
 										<li><a href="#">Gaming</a><ul>
-                                            <li><a href="https://traviswmanning.com/zty.pe" target="_blank">ZTY.PE Modified</a></li>
-											<li><a href="https://zty.pe/" target="_blank">ZTY.PE Original</a></li>
+											<li><a href="https://traviswmanning.com/zty.pe"target="_blank">>ZTY.PE Modified</a><ul>
+													<li><a href="https://zty.pe/" target="_blank">ZTY.PE Original</a></li>
+											</ul></li>
 											<li><a href="https://traviswmanning.com/xtype/phoboslab.org/xtype" target="_blank">Xtype Modified</a></li>
+													<li><a href="https://phoboslab.org/xtype/" target="_blank">Xtype Original</a></li>
+											</ul></li>
                                         </ul></li>
 										<li>
 											<a href="#">Learning Resources</a>
