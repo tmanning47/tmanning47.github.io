@@ -244,7 +244,7 @@ function loadScript(src) {
   document.head.appendChild(script);
 }
 
-const mediaQuery = window.matchMedia('(max-width: 768px)'); // Adjust breakpoint as needed
+const mediaQuery = window.matchMedia('(max-width: 1440px)'); // Adjust breakpoint as needed 768px
 
 function handleMediaQueryChange(e) {
   if (e.matches) {
@@ -256,15 +256,6 @@ function handleMediaQueryChange(e) {
 
 mediaQuery.addListener(handleMediaQueryChange);
 handleMediaQueryChange(mediaQuery);
-
-// Optional: Additional iOS-specific considerations
-if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-  // Add specific iOS-related code here
-  // For example:
-  // - Handling touch events
-  // - Optimizing performance
-  // - Implementing specific features for iOS
-}
 </script>
 
 
