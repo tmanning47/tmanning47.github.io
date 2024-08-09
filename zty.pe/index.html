@@ -235,7 +235,22 @@
   }
 </script>
  -->
- 
+<script>
+function isIOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+if (isIOS()) {
+  // Display a button for iOS users
+  document.body.innerHTML += '<button onclick="redirectToIOS()">Go to iOS version</button>';
+} else {
+  // Display content for non-iOS users
+}
+
+function redirectToIOS() {
+  window.location.href = 'https://zty.pe/'; // Replace with your iOS URL
+}
+</script>
 <script>
 function loadScript(src) {
   const script = document.createElement('script');
@@ -256,22 +271,6 @@ function handleMediaQueryChange(e) {
 
 mediaQuery.addListener(handleMediaQueryChange);
 handleMediaQueryChange(mediaQuery);
-</script>
-<script>
-function isIOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-}
-
-if (isIOS()) {
-  // Display a button for iOS users
-  document.body.innerHTML += '<button onclick="redirectToIOS()">Go to iOS version</button>';
-} else {
-  // Display content for non-iOS users
-}
-
-function redirectToIOS() {
-  window.location.href = 'https://zty.pe/'; // Replace with your iOS URL
-}
 </script>
     <meta
       name="viewport"
