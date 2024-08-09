@@ -29,8 +29,8 @@
 			top: 0;
 			left: 0;
 			right: 0;
-			width: 99.98%;
-			height: 99.98%;
+			width: 99.96%;
+			height: 99.96%;
 			z-index: 80;
 		}
 		
