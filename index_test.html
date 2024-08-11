@@ -32,7 +32,7 @@
 							</ul>
 						</nav>
                     <div id="header-placeholder"></div> <!-- 	header insert via header.html and script -->
-             <!--       
+        <!--              
                     <div id="header-container">
                       <script id="replace_with_header" src="header.js"></script>
                     </div>
@@ -171,31 +171,27 @@
                   document.getElementById('footer').innerHTML = data;
                 });
             </script>
-        <!--
-            <script>
-            $.get("header.html", function(data){
-                $("#header-placeholder").replaceWith(data);
-            });
-            </script>
-        -->
-            <script> 
-                        function loadHeader() {
-                    fetch('header.html')
-                        .then(response => response.text())
-                        .then(data => {
-                            document.getElementById('header-placeholder').innerHTML = data;
-                            // After the HTML is loaded, load and execute your dropdown script
-                            loadDropdownScript();
-                        });
-                }
+        <script>
+function loadHeader() {
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            initializeDropdown();
+        });
+}
 
-                function loadDropdownScript() {
-                    const script = document.createElement('script');
-                    script.src = 'dropdown.js';
-                    script.onload = initializeDropdown; // Call initializeDropdown after script loads
-                    document.body.appendChild(script);
-                }
-            </script>
-        
+function initializeDropdown() {
+    $('#nav > ul').dropotron({
+        expandMode: 'hover',
+        offsetY: -15,
+        hoverDelay: 0,
+        hideDelay: 350
+    });
+}
+
+// Load the header when the page loads
+document.addEventListener('DOMContentLoaded', loadHeader);
+</script>
 	</body>
 </html>
