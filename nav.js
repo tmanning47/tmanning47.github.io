@@ -7,7 +7,7 @@ function loadHeader() {
                         initializeDropdown();
                     });
             }
-
+/*
 function setCurrentPage() {
   const currentPath = window.location.pathname;
   const navItems = document.querySelectorAll('#nav > ul > li');
@@ -45,7 +45,24 @@ function setCurrentPage() {
   });
 }
 
+*/
 
+function setCurrentPage() {
+  const currentPath = window.location.pathname;
+  const navItems = document.querySelectorAll('#nav > ul > li');
+
+  navItems.forEach(item => {
+    const link = item.querySelector('a');
+    const subItems = item.querySelector('ul');
+
+    console.log('Current Path:', currentPath);
+    console.log('Item:', item);
+    console.log('Link:', link);
+    console.log('Sub-items:', subItems);
+
+    // ... rest of your function
+  });
+}
 
 
             function initializeDropdown() {
