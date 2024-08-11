@@ -46,7 +46,7 @@ function setCurrentPage() {
 }
 
 */
-
+/* debug current page
 function setCurrentPage() {
   const currentPath = window.location.pathname;
   const navItems = document.querySelectorAll('#nav > ul > li');
@@ -61,6 +61,38 @@ function setCurrentPage() {
     console.log('Sub-items:', subItems);
 
     // ... rest of your function
+  });
+}
+*/
+
+function setCurrentPage() {
+  const currentPath = window.location.pathname;
+  const navItems = document.querySelectorAll('#nav > ul > li');
+
+  navItems.forEach(item => {
+    const link = item.querySelector('a');
+    const subItems = item.querySelector('ul');
+
+    // Remove trailing slashes for consistent comparison
+    const normalizedCurrentPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+
+    // Check for direct match (including empty path for Home)
+    if (link) {
+      const itemPath = link.getAttribute('href');
+      const normalizedItemPath = itemPath.endsWith('/') ? itemPath.slice(0, -1) : itemPath;
+
+      if (normalizedItemPath === normalizedCurrentPath || (normalizedItemPath === 'index.html' && normalizedCurrentPath === '/')) {
+        item.classList.add('current');
+        return; // Exit the loop if a direct match is found
+      }
+
+      // Check for sub-items
+      if (subItems) {
+        // ... rest of your sub-item logic
+      } else {
+        item.classList.remove('current');
+      }
+    }
   });
 }
 
