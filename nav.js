@@ -5,6 +5,7 @@ function loadHeader() {
                         document.getElementById('nav-placeholder').innerHTML = data;
                         setCurrentPage();
                         initializeDropdown();
+                        initializeMobileNav();
                     });
             }
 
@@ -37,5 +38,45 @@ function loadHeader() {
                     hideDelay: 350
                 });
             }
+
+            function initializeMobileNav() {
+    const $window = $(window);
+    const $body = $('body');
+
+    // Title Bar.
+    $(
+        '<div id="titleBar">' +
+            '<a href="#navPanel" class="toggle"></a>' +
+            '<span class="title">' + $('#logo').html() + '</span>' +
+        '</div>'
+    )
+        .appendTo($body);
+
+    // Navigation Panel.
+    $(
+        '<div id="navPanel">' +
+            '<nav>' +
+                $('#nav').navList() +
+            '</nav>' +
+        '</div>'
+    )
+        .appendTo($body)
+        .panel({
+            delay: 500,
+            hideOnClick: true,
+            hideOnSwipe: true,
+            resetScroll: true,
+            resetForms: true,
+            side: 'left',
+            target: $body,
+            visibleClass: 'navPanel-visible'
+        });
+}
+
+$(window).on('resize', function() {
+    if ($(window).width() <= 840) {
+        initializeMobileNav();
+    }
+});
 
             document.addEventListener('DOMContentLoaded', loadHeader);

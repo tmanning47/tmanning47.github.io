@@ -2913,11 +2913,11 @@ input, select, textarea {
 	}
 
 /* Narrower */
-/*
+
 	#navPanel, #titleBar {
 		display: none;
 	}
-*/
+
 	@media screen and (max-width: 840px) {
 
 		/* Basic */
@@ -3033,7 +3033,7 @@ input, select, textarea {
 					}
 
 		/* Nav */
-/*
+
 			#page-wrapper {
 				-moz-backface-visibility: hidden;
 				-webkit-backface-visibility: hidden;
@@ -3219,7 +3219,7 @@ input, select, textarea {
 				-ms-transform: translateX(0);
 				transform: translateX(0);
 			}
-*/
+
 	}
 
 /* Mobile */
