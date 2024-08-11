@@ -1,4 +1,3 @@
-<script>
 function loadHeader() {
     fetch('header.html')
         .then(response => response.text())
@@ -40,4 +39,3 @@ function initializeDropdown() {
 }
 
 document.addEventListener('DOMContentLoaded', loadHeader);
-</script>
