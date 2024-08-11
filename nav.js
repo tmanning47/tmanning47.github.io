@@ -1,7 +1,3 @@
-<!--
-						<div id="nav-placeholder"></div> <!-- 	nav insert via nav.html and script -->
-                        <script src="nav.js"></script>
--->
             <script>
             function loadHeader() {
                 fetch('nav.html')
