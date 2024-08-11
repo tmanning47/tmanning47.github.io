@@ -27,7 +27,7 @@
                         }
                     }
                 });
-            }
+            } 
             function initializeDropdown() {
                 $('#nav > ul').dropotron({
                     expandMode: 'hover',
