@@ -1,65 +1,54 @@
 function loadHeader() {
-                fetch('nav.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('nav-placeholder').innerHTML = data;
-                        setCurrentPage();
-                        initializeDropdown();
-                    });
-            }
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+            initializeDropdown();
+            setCurrentPage();  // Call setCurrentPage after the nav is loaded
+        });
+}
 
 function setCurrentPage() {
-  const currentPath = window.location.pathname.replace(/^\//, '');  // Remove leading slash
+  const currentPath = window.location.pathname.replace(/^\//, '').toLowerCase();
+  console.log('Current path:', currentPath);
+
   const navItems = document.querySelectorAll('#nav > ul > li');
-  let activeItemFound = false;
 
   navItems.forEach(item => {
     const link = item.querySelector('a');
-    const subItems = item.querySelector('ul');
-    let isCurrentItem = false;
+    const subItems = item.querySelectorAll('ul li a');
+    
+    item.classList.remove('current');  // Reset current state
 
     if (link) {
-      const linkPath = new URL(link.href).pathname.replace(/^\//, '');  // Get path and remove leading slash
+      const linkPath = new URL(link.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
+      console.log('Checking main link:', linkPath);
 
-      // Check for direct match (including empty path for Home)
-      if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
-        isCurrentItem = true;
-        activeItemFound = true;
+      if (currentPath === linkPath || (currentPath === '' && linkPath === 'index.html')) {
+        console.log('Match found for main link');
+        item.classList.add('current');
+        return;  // Exit the loop if main link matches
       }
     }
 
-    // Check for sub-items
-    if (subItems) {
-      const subLinks = subItems.querySelectorAll('li a');
-      let hasActiveSubItem = false;
+    // Check sub-items
+    subItems.forEach(subLink => {
+      const subLinkPath = new URL(subLink.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
+      console.log('Checking sub-link:', subLinkPath);
 
-      subLinks.forEach(subLink => {
-        const subItemPath = new URL(subLink.href).pathname.replace(/^\//, '');
-        if (subItemPath === currentPath) {
-          hasActiveSubItem = true;
-          activeItemFound = true;
-        }
-      });
-
-      if (hasActiveSubItem) {
-        isCurrentItem = true;
+      if (currentPath === subLinkPath) {
+        console.log('Match found for sub-link');
+        item.classList.add('current');
+        return;  // Exit the loop if sub-link matches
       }
-    }
-
-    // Set or remove 'current' class
-    if (isCurrentItem && !activeItemFound) {
-      item.classList.add('current');
-    } else {
-      item.classList.remove('current');
-    }
+    });
   });
 
-  // If no specific item was found to be active, set Home as current
-  if (!activeItemFound) {
+  // If no match found, set Home as current
+  if (!document.querySelector('#nav > ul > li.current')) {
+    console.log('No match found, setting Home as current');
     const homeItem = document.querySelector('#nav > ul > li:first-child');
-    if (homeItem) {
-      homeItem.classList.add('current');
-    }
+    if (homeItem) homeItem.classList.add('current');
   }
 }
 
@@ -93,4 +82,10 @@ function setCurrentPage() {
                 });
             }
 
-            document.addEventListener('DOMContentLoaded', loadHeader);
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeader();
+    // In case the nav is already in the DOM:
+    if (document.getElementById('nav')) {
+        setCurrentPage();
+    }
+});
