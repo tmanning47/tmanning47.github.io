@@ -2914,9 +2914,6 @@ input, select, textarea {
 
 /* Narrower */
 
-	#titleBar {
-		display: none;
-	}
 
 	@media screen and (max-width: 840px) {
 
@@ -3076,15 +3073,6 @@ input, select, textarea {
 					font-size: 1em;
 				}
 
-		/* Menu */
-
-			ul.menu li {
-				border: 0;
-				padding: 0;
-				margin: 0;
-				display: block;
-				line-height: 2em;
-			}
 
 		/* Banner */
 
