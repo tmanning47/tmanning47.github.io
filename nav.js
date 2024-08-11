@@ -1,40 +1,39 @@
+function loadHeader() {
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+            setCurrentPage();
+            initializeDropdown();
+        });
+}
 
-            function loadHeader() {
-                fetch('nav.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('nav-placeholder').innerHTML = data;
-                        setCurrentPage();
-                        initializeDropdown();
-                    });
+function setCurrentPage() {
+    const currentPath = window.location.pathname;
+    const navItems = document.querySelectorAll('#nav > ul > li');
+
+    navItems.forEach(item => {
+        const link = item.querySelector('a');
+        if (link) {
+            const itemPath = link.getAttribute('href');
+            if (itemPath === currentPath || 
+                (currentPath.endsWith('/') && itemPath === 'index.html') ||
+                (currentPath.endsWith('/index.html') && itemPath === 'https://traviswmanning.com/')) {
+                item.classList.add('current');
+            } else {
+                item.classList.remove('current');
             }
+        }
+    });
+}
 
-            function setCurrentPage() {
-                const currentPath = window.location.pathname;
-                const navItems = document.querySelectorAll('#nav > ul > li');
+function initializeDropdown() {
+    $('#nav > ul').dropotron({
+        expandMode: 'hover',
+        offsetY: -15,
+        hoverDelay: 0,
+        hideDelay: 350
+    });
+}
 
-                navItems.forEach(item => {
-                    const link = item.querySelector('a');
-                    if (link) {
-                        const itemPath = link.getAttribute('href');
-                        if (itemPath === currentPath || 
-                            (currentPath.endsWith('/') && itemPath === 'index.html') ||
-                            (currentPath === '/index.html' && itemPath === 'https://traviswmanning.com/') ||
-                            currentPath.includes(itemPath)) {
-                            item.classList.add('current');
-                        } else {
-                            item.classList.remove('current');
-                        }
-                    }
-                });
-            } 
-            function initializeDropdown() {
-                $('#nav > ul').dropotron({
-                    expandMode: 'hover',
-                    offsetY: -15,
-                    hoverDelay: 0,
-                    hideDelay: 350
-                });
-            }
-
-            document.addEventListener('DOMContentLoaded', loadHeader);
+document.addEventListener('DOMContentLoaded', loadHeader);
