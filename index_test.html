@@ -26,11 +26,13 @@
 						<h1><a href="index.html" id="logo">Travis Manning <em> - Projects and Resources</em></a></h1>
 
 					<!-- Nav -->
+                    <!--
 						<nav id="nav">
 							<ul>
 								<li class="current"><a href="index.html">Home</a></li>
 							</ul>
 						</nav>
+                    -->
                     <div id="header-placeholder"></div> <!-- 	header insert via header.html and script -->
         <!--              
                     <div id="header-container">
@@ -176,7 +178,19 @@ function loadHeader() {
     fetch('header.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
+            const parser = new DOMParser();
+            const headerDoc = parser.parseFromString(data, 'text/html');
+            const navContent = headerDoc.querySelector('#nav').innerHTML;
+            
+            const navPlaceholder = document.getElementById('nav-placeholder');
+            navPlaceholder.innerHTML = `<nav id="nav">${navContent}</nav>`;
+            
+            // Add the "Home" link to the beginning of the nav
+            const navUl = navPlaceholder.querySelector('ul');
+            const homeLi = document.createElement('li');
+            homeLi.innerHTML = '<a href="index.html">Home</a>';
+            navUl.insertBefore(homeLi, navUl.firstChild);
+            
             initializeDropdown();
         });
 }
