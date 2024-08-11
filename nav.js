@@ -3,28 +3,8 @@ function loadHeader() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
-            setCurrentPage();
             initializeDropdown();
         });
-}
-
-function setCurrentPage() {
-    const currentPath = window.location.pathname;
-    const navItems = document.querySelectorAll('#nav > ul > li');
-
-    navItems.forEach(item => {
-        const link = item.querySelector('a');
-        if (link) {
-            const itemPath = link.getAttribute('href');
-            if (itemPath === currentPath || 
-                (currentPath.endsWith('/') && itemPath === 'index.html') ||
-                (currentPath.endsWith('/index.html') && itemPath === 'https://traviswmanning.com/')) {
-                item.classList.add('current');
-            } else {
-                item.classList.remove('current');
-            }
-        }
-    });
 }
 
 function initializeDropdown() {
@@ -36,4 +16,5 @@ function initializeDropdown() {
     });
 }
 
+// Load the header when the page loads
 document.addEventListener('DOMContentLoaded', loadHeader);
