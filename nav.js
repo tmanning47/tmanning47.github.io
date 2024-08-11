@@ -1,3 +1,4 @@
+
 function loadHeader() {
     fetch('nav.html')
         .then(response => response.text())
@@ -10,16 +11,20 @@ function loadHeader() {
 
 function setCurrentPage() {
     const currentPath = window.location.pathname;
+    console.log('Current path:', currentPath);
     const navItems = document.querySelectorAll('#nav > ul > li');
 
     navItems.forEach(item => {
         const link = item.querySelector('a');
         if (link) {
             const itemPath = link.getAttribute('href');
+            console.log('Checking item:', itemPath);
             if (itemPath === currentPath || 
                 (currentPath.endsWith('/') && itemPath === 'index.html') ||
                 (currentPath.endsWith('.com') && itemPath === 'index.html') ||
-                (currentPath.endsWith('/index.html') && itemPath === 'https://traviswmanning.com/')) {
+                (currentPath === '/index.html' && itemPath === 'https://traviswmanning.com/') ||
+                currentPath.includes(itemPath)) {
+                console.log('Match found for:', itemPath);
                 item.classList.add('current');
             } else {
                 item.classList.remove('current');
