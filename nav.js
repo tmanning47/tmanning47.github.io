@@ -1,13 +1,13 @@
-function loadHeader() {
-                fetch('nav.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('nav-placeholder').innerHTML = data;
-                        setCurrentPage();
-                        initializeDropdown();
-                        initializeMobileNav();
-                    });
-            }
+function loadHeader(callback) {
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+            setCurrentPage();
+            initializeDropdown();
+            if (callback) callback();
+        });
+}
 
             function setCurrentPage() {
                 const currentPath = window.location.pathname;
@@ -38,28 +38,28 @@ function loadHeader() {
                     hideDelay: 350
                 });
             }
-
-            function initializeMobileNav() {
-    const $window = $(window);
+function initializeMobileNav() {
     const $body = $('body');
+    const $navPanel = $('#navPanel');
+    const $titleBar = $('#titleBar');
 
-    // Title Bar.
-    $(
-        '<div id="titleBar">' +
-            '<a href="#navPanel" class="toggle"></a>' +
-            '<span class="title">' + $('#logo').html() + '</span>' +
-        '</div>'
-    )
+    // If the elements already exist, remove them
+    if ($navPanel.length) $navPanel.remove();
+    if ($titleBar.length) $titleBar.remove();
+
+    // Title Bar
+    $('<div id="titleBar">' +
+        '<a href="#navPanel" class="toggle"></a>' +
+        '<span class="title">' + $('#logo').html() + '</span>' +
+    '</div>')
         .appendTo($body);
 
-    // Navigation Panel.
-    $(
-        '<div id="navPanel">' +
-            '<nav>' +
-                $('#nav').navList() +
-            '</nav>' +
-        '</div>'
-    )
+    // Navigation Panel
+    $('<div id="navPanel">' +
+        '<nav>' +
+            $('#nav').html() +
+        '</nav>' +
+    '</div>')
         .appendTo($body)
         .panel({
             delay: 500,
@@ -71,12 +71,28 @@ function loadHeader() {
             target: $body,
             visibleClass: 'navPanel-visible'
         });
+
+    // Fix: Re-bind click events for mobile nav
+    $('#titleBar .toggle').on('click', function(e) {
+        e.preventDefault();
+        $body.toggleClass('navPanel-visible');
+    });
 }
 
-$(window).on('resize', function() {
-    if ($(window).width() <= 840) {
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadHeader(function() {
         initializeMobileNav();
-    }
+    });
 });
 
-            document.addEventListener('DOMContentLoaded', loadHeader);
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        if (window.innerWidth <= 840) {
+            initializeMobileNav();
+        }
+    }, 250);
+});
