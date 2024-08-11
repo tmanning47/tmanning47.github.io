@@ -153,6 +153,16 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
         
+        
+        <script>
+                fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                  document.getElementById('footer').innerHTML = data;
+                });
+            </script>
+        
+        
             <script>
                 fetch('footer.html')
                 .then(response => response.text())
@@ -167,5 +177,36 @@
             });
             </script>
 
+            <script> 
+                        function loadHeader() {
+                    fetch('header.html')
+                        .then(response => response.text())
+                        .then(data => {
+                            document.getElementById('header-placeholder').innerHTML = data;
+                            // After the HTML is loaded, load and execute your dropdown script
+                            loadDropdownScript();
+                        });
+                }
+
+                function loadDropdownScript() {
+                    const script = document.createElement('script');
+                    script.src = 'path/to/your/dropdown-script.js';
+                    script.onload = initializeDropdown; // Call initializeDropdown after script loads
+                    document.body.appendChild(script);
+                }
+
+                    function initializeDropdown() {
+                        // Or, if you're using a custom dropdown, you might do something like:
+                        const dropdowns = document.querySelectorAll('.dropdown-toggle');
+                        dropdowns.forEach(dropdown => {
+                            dropdown.addEventListener('click', function() {
+                                this.nextElementSibling.classList.toggle('show');
+                            });
+                        });
+                    }
+                // Call this when the page loads
+                loadHeader();
+            </script>
+        
 	</body>
 </html>
