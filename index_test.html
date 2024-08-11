@@ -199,12 +199,12 @@
             document.addEventListener('DOMContentLoaded', loadHeader);
         </script>
 -->
-      <script>  
-        function loadHeader() {
+<script>
+function loadHeader() {
     fetch('header.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
+            document.getElementById('nav-placeholder').innerHTML = data;
             setCurrentPage();
             initializeDropdown();
         });
@@ -215,9 +215,10 @@ function setCurrentPage() {
     const navItems = document.querySelectorAll('#nav a');
 
     navItems.forEach(item => {
-        if (item.getAttribute('href') === currentPath || 
-            (currentPath === '/' && item.getAttribute('href') === 'index.html') ||
-            (currentPath === '/index.html' && item.getAttribute('href') === 'https://traviswmanning.com/')) {
+        const itemPath = item.getAttribute('href');
+        if (itemPath === currentPath || 
+            (currentPath.endsWith('/') && itemPath === 'index.html') ||
+            (currentPath.endsWith('/index.html') && itemPath === 'https://traviswmanning.com/')) {
             item.parentElement.classList.add('current');
         } else {
             item.parentElement.classList.remove('current');
@@ -234,8 +235,7 @@ function initializeDropdown() {
     });
 }
 
-// Load the header when the page loads
 document.addEventListener('DOMContentLoaded', loadHeader);
-        </script>
+</script>
 	</body>
 </html>
