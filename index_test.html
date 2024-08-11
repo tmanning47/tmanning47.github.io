@@ -31,7 +31,7 @@
 								<li class="current"><a href="index.html">Home</a></li>
 							</ul>
 						</nav>
-                    <div id="header"></div> <!-- 	header insert via header.html and script -->
+                    <div id="header-placeholder"></div> <!-- 	header insert via header.html and script -->
 
 				</div>
 
@@ -160,33 +160,16 @@
         <script>     
             $(document).ready(function() {
               $('.dropdown').dropotron({
-                mode: 'click', // Change to 'hover' if you prefer hover behavior
+                mode: 'hover', // Change to 'hover' if you prefer hover behavior
                 expandClass: 'show'
               });
             });
         </script>
         
             <script>
-                fetch('header.html')
-  .then(response => response.text())
-  .then(data => {
-    const headerElement = document.getElementById('header');
-    headerElement.innerHTML = data;   
-
-
-    // Event delegation for dropdown menu
-    const nav = document.getElementById('nav'); // Assuming the dropdown menu is within the nav element
-    nav.addEventListener('click', (event) => {
-      const target = event.target;
-      if (target.tagName === 'A' && target.parentNode.classList.contains('dropdown')) {
-        event.preventDefault();
-        target.parentNode.classList.toggle('active');
-      }
-    });
-  })
-  .catch(error => {
-    console.error('Error fetching header:', error);
-  });
+            $.get("header.html", function(data){
+                $("#header-placeholder").replaceWith(data);
+            });
             </script>
 
 	</body>
