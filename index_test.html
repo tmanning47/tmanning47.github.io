@@ -200,29 +200,13 @@
         </script>
 -->
       <script>  
-        function loadHeader() {
+function loadHeader() {
     fetch('header.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('header-placeholder').innerHTML = data;
-            setCurrentPage();
+            document.getElementById('nav-placeholder').innerHTML = data;
             initializeDropdown();
         });
-}
-
-function setCurrentPage() {
-    const currentPath = window.location.pathname;
-    const navItems = document.querySelectorAll('#nav a');
-
-    navItems.forEach(item => {
-        if (item.getAttribute('href') === currentPath || 
-            (currentPath === '/' && item.getAttribute('href') === 'index.html') ||
-            (currentPath === '/index.html' && item.getAttribute('href') === 'https://traviswmanning.com/')) {
-            item.parentElement.classList.add('current');
-        } else {
-            item.parentElement.classList.remove('current');
-        }
-    });
 }
 
 function initializeDropdown() {
@@ -234,8 +218,7 @@ function initializeDropdown() {
     });
 }
 
-// Load the header when the page loads
 document.addEventListener('DOMContentLoaded', loadHeader);
-        </script>
+</script>
 	</body>
 </html>
