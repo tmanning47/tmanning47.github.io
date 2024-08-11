@@ -8,10 +8,13 @@ function loadHeader() {
         .then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
             setCurrentPage();
-            if (!isMobileView()) {
+            if (isMobileView()) {
+                initializeMobileNav();
+            } else {
                 initializeDropdown();
             }
-            initializeMobileNav();
+            // Add a slight delay to ensure everything is rendered
+            setTimeout(checkViewportSize, 100);
         });
 }
 
@@ -79,15 +82,20 @@ function initializeMobileNav() {
         $body.toggleClass('navPanel-visible');
     });
 
-    // Show/hide based on screen size
+    checkViewportSize();
+}
+
+function checkViewportSize() {
     if (isMobileView()) {
-        $titleBar.show();
-        $navPanel.show();
-        $('#header').hide();
+        if ($('#titleBar').css('display') === 'none') {
+            $('#titleBar, #navPanel').show();
+            $('#header, #nav').hide();
+        }
     } else {
-        $titleBar.hide();
-        $navPanel.hide();
-        $('#header').show();
+        if ($('#header').css('display') === 'none') {
+            $('#titleBar, #navPanel').hide();
+            $('#header, #nav').show();
+        }
     }
 }
 
@@ -96,7 +104,5 @@ document.addEventListener('DOMContentLoaded', loadHeader);
 let resizeTimer;
 window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(function() {
-        initializeMobileNav();
-    }, 250);
+    resizeTimer = setTimeout(checkViewportSize, 250);
 });
