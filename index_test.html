@@ -166,15 +166,6 @@
                   document.getElementById('footer').innerHTML = data;
                 });
             </script>
-        
-        
-            <script>
-                fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                  document.getElementById('footer').innerHTML = data;
-                });
-            </script>
         <!--
         <script>
             function loadHeader() {
@@ -212,16 +203,19 @@ function loadHeader() {
 
 function setCurrentPage() {
     const currentPath = window.location.pathname;
-    const navItems = document.querySelectorAll('#nav a');
+    const navItems = document.querySelectorAll('#nav > ul > li');
 
     navItems.forEach(item => {
-        const itemPath = item.getAttribute('href');
-        if (itemPath === currentPath || 
-            (currentPath.endsWith('/') && itemPath === 'index.html') ||
-            (currentPath.endsWith('/index.html') && itemPath === 'https://traviswmanning.com/')) {
-            item.parentElement.classList.add('current');
-        } else {
-            item.parentElement.classList.remove('current');
+        const link = item.querySelector('a');
+        if (link) {
+            const itemPath = link.getAttribute('href');
+            if (itemPath === currentPath || 
+                (currentPath.endsWith('/') && itemPath === 'index.html') ||
+                (currentPath.endsWith('/index.html') && itemPath === 'https://traviswmanning.com/')) {
+                item.classList.add('current');
+            } else {
+                item.classList.remove('current');
+            }
         }
     });
 }
