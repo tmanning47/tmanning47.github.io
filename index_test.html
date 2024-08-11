@@ -142,16 +142,26 @@
                   document.getElementById('footer').innerHTML = data;
                 });
             </script>
+        
+        <script>     
+            $(document).ready(function() {
+              $('.dropdown').dropotron({
+                mode: 'click', // Change to 'hover' if you prefer hover behavior
+                expandClass: 'show'
+              });
+            });
+        </script>
+        
             <script>
-               fetch('header.html')
+                fetch('header.html')
   .then(response => response.text())
   .then(data => {
     const headerElement = document.getElementById('header');
     headerElement.innerHTML = data;   
 
 
-    // Event delegation for dropdown menus
-    const nav = document.getElementById('nav');
+    // Event delegation for dropdown menu
+    const nav = document.getElementById('nav'); // Assuming the dropdown menu is within the nav element
     nav.addEventListener('click', (event) => {
       const target = event.target;
       if (target.tagName === 'A' && target.parentNode.classList.contains('dropdown')) {
