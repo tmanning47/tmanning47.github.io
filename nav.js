@@ -31,6 +31,12 @@ function setCurrentPage() {
         const linkPath = new URL(link.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
         console.log('Checking link:', linkPath, 'Text:', link.textContent);
 
+        // Skip links that are just "#" or javascript:void(0)
+        if (linkPath === '/' || linkPath.includes('javascript:void(0)')) {
+            console.log('Skipping placeholder link:', link.textContent);
+            continue;
+        }
+
         if (currentPath === linkPath || (currentPath === '' && linkPath === 'index.html')) {
             console.log('Match found:', linkPath, 'Text:', link.textContent);
             
@@ -44,7 +50,7 @@ function setCurrentPage() {
             while (parent && parent !== document.querySelector('#nav > ul')) {
                 if (parent.tagName === 'LI') {
                     parent.classList.add('current');
-                    console.log('Also marked as current:', parent.textContent);
+                    console.log('Also marked as current:', parent.querySelector('a').textContent);
                 }
                 parent = parent.parentElement;
             }
