@@ -1,41 +1,55 @@
 function loadHeader() {
-                fetch('nav.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('nav-placeholder').innerHTML = data;
-                        setCurrentPage();
-                        initializeDropdown();
-                    });
-            }
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('nav-placeholder').innerHTML = data;
+            setCurrentPage();
+            initializeNavigation();
+        })
+        .catch(error => {
+            console.error('Error loading navigation:', error);
+        });
+}
 
-            function setCurrentPage() {
-                const currentPath = window.location.pathname;
-                const navItems = document.querySelectorAll('#nav > ul > li');
+function initializeNavigation() {
+    if (window.innerWidth > 980) {
+        initializeDropdown();
+    } else {
+        initializeMobileNav();
+    }
+}
 
-                navItems.forEach(item => {
-                    const link = item.querySelector('a');
-                    if (link) {
-                        const itemPath = link.getAttribute('href');
-                        if (itemPath === currentPath || 
-                            (currentPath.endsWith('/') && itemPath === 'index.html') ||
-                            (currentPath.endsWith('.com') && itemPath === 'index.html') ||
-                            (currentPath === '/index.html' && itemPath === 'https://traviswmanning.com/') ||
-                            currentPath.includes(itemPath)) {
-                            item.classList.add('current');
-                        } else {
-                            item.classList.remove('current');
-                        }
-                    }
-                });
-            }
+function initializeDropdown() {
+    $('#nav > ul').dropotron({
+        expandMode: 'hover',
+        offsetY: -15,
+        hoverDelay: 0,
+        hideDelay: 350
+    });
+}
 
-            function initializeDropdown() {
-                $('#nav > ul').dropotron({
-                    expandMode: 'hover',
-                    offsetY: -15,
-                    hoverDelay: 0,
-                    hideDelay: 350
-                });
-            }
+function initializeMobileNav() {
+    const topLevelItems = document.querySelectorAll('#nav > ul > li');
+    topLevelItems.forEach(item => {
+        const link = item.querySelector('a');
+        const subMenu = item.querySelector('ul');
+        if (subMenu) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                subMenu.classList.toggle('active');
+            });
+        }
+    });
+}
 
-            document.addEventListener('DOMContentLoaded', loadHeader);
+function toggleMobileMenu() {
+    const nav = document.querySelector('#nav > ul');
+    nav.classList.toggle('active');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeader();
+    document.querySelector('.mobile-menu-toggle').addEventListener('click', toggleMobileMenu);
+});
+
+window.addEventListener('resize', initializeNavigation);
