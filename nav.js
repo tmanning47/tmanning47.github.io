@@ -5,7 +5,7 @@ function loadHeader() {
                         document.getElementById('nav-placeholder').innerHTML = data;
                         setCurrentPage();
                         initializeDropdown();
-                    setTimeout(setCurrentPage, 100); // Adjust timeout as needed
+                    setTimeout(setCurrentPage, 500); // Adjust timeout as needed
                     });
             }
 
