@@ -2913,11 +2913,11 @@ input, select, textarea {
 	}
 
 /* Narrower */
-
+/*
 	#navPanel, #titleBar {
 		display: none;
 	}
-
+*/
 	@media screen and (max-width: 840px) {
 
 		/* Basic */
