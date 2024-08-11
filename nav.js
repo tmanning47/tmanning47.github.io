@@ -16,32 +16,35 @@ function setCurrentPage() {
     const link = item.querySelector('a');
     const subItems = item.querySelector('ul');
 
-    if (link) {
-      const itemPath = link.getAttribute('href');
+    // Check for direct match (including empty path for Home)
+    if (link && link.getAttribute('href') === currentPath) {
+      item.classList.add('current');
+      return; // Exit the loop if a direct match is found
+    }
 
-      // Check for direct match (including empty path for Home)
-      if ((itemPath === currentPath) || (itemPath === '' && currentPath === '/')) {
+    // Check for sub-items
+    if (subItems) {
+      const subLinks = subItems.querySelectorAll('li a');
+      let hasActiveSubItem = false;
+
+      subLinks.forEach(subLink => {
+        const subItemPath = subLink.getAttribute('href');
+        if (subItemPath === currentPath) {
+          hasActiveSubItem = true;
+        }
+      });
+
+      if (hasActiveSubItem) {
         item.classList.add('current');
-        return; // Exit the loop if a direct match is found
+      } else {
+        item.classList.remove('current');
       }
-
-      // Check for sub-items
-      if (subItems) {
-        const subLinks = subItems.querySelectorAll('li a');
-        subLinks.forEach(subLink => {
-          const subItemPath = subLink.getAttribute('href');
-          if (subItemPath === currentPath) {
-            item.classList.add('current');
-            return; // Exit the loop if a sub-item match is found
-          }
-        });
-      }
-
-      // No match, remove the 'current' class
+    } else {
       item.classList.remove('current');
     }
   });
 }
+
 
 
 
