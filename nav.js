@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="assets/css/main.css" />
             function loadHeader() {
                 fetch('nav.html')
                     .then(response => response.text())
