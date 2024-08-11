@@ -177,25 +177,41 @@
             </script>
         <script>
             function loadHeader() {
-                fetch('header.html')
-                    .then(response => response.text())
-                    .then(data => {
-                        document.getElementById('header-placeholder').innerHTML = data;
-                        initializeDropdown();
-                    });
-            }
+    fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-placeholder').innerHTML = data;
+            setCurrentPage();
+            initializeDropdown();
+        });
+}
 
-            function initializeDropdown() {
-                $('#nav > ul').dropotron({
-                    expandMode: 'hover',
-                    offsetY: -15,
-                    hoverDelay: 0,
-                    hideDelay: 350
-                });
-            }
+function setCurrentPage() {
+    const currentPath = window.location.pathname;
+    const navItems = document.querySelectorAll('#nav a');
 
-            // Load the header when the page loads
-            document.addEventListener('DOMContentLoaded', loadHeader);
+    navItems.forEach(item => {
+        if (item.getAttribute('href') === currentPath || 
+            (currentPath === '/' && item.getAttribute('href') === 'index.html') ||
+            (currentPath === '/index.html' && item.getAttribute('href') === 'https://traviswmanning.com/')) {
+            item.parentElement.classList.add('current');
+        } else {
+            item.parentElement.classList.remove('current');
+        }
+    });
+}
+
+function initializeDropdown() {
+    $('#nav > ul').dropotron({
+        expandMode: 'hover',
+        offsetY: -15,
+        hoverDelay: 0,
+        hideDelay: 350
+    });
+}
+
+// Load the header when the page loads
+document.addEventListener('DOMContentLoaded', loadHeader);
         </script>
 	</body>
 </html>
