@@ -12,41 +12,35 @@ function setCurrentPage() {
     const currentPath = window.location.pathname.replace(/^\//, '').toLowerCase();
     console.log('Current path:', currentPath);
 
-    const navItems = document.querySelectorAll('#nav > ul > li');
+    const allNavLinks = document.querySelectorAll('#nav a');
     let matchFound = false;
 
-    for (let item of navItems) {
-        const link = item.querySelector('a');
-        const subItems = item.querySelectorAll('ul li a');
-        
-        item.classList.remove('current');  // Reset current state
+    // First, remove 'current' class from all items
+    allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
 
-        if (link) {
-            const linkPath = new URL(link.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
-            console.log('Checking main link:', linkPath);
+    // Check all links, including sub-items
+    for (let link of allNavLinks) {
+        const linkPath = new URL(link.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
+        console.log('Checking link:', linkPath);
 
-            if (currentPath === linkPath || (currentPath === '' && linkPath === 'index.html')) {
-                console.log('Match found for main link');
-                item.classList.add('current');
-                matchFound = true;
-                break;  // Exit the loop if main link matches
+        if (currentPath === linkPath || (currentPath === '' && linkPath === 'index.html')) {
+            console.log('Match found:', linkPath);
+            
+            // Mark the immediate parent li as current
+            link.closest('li').classList.add('current');
+            
+            // Also mark all parent li elements up to the top level
+            let parent = link.closest('li').parentElement;
+            while (parent && parent !== document.querySelector('#nav > ul')) {
+                if (parent.tagName === 'LI') {
+                    parent.classList.add('current');
+                }
+                parent = parent.parentElement;
             }
+
+            matchFound = true;
+            break;
         }
-
-        // Check sub-items
-        for (let subLink of subItems) {
-            const subLinkPath = new URL(subLink.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
-            console.log('Checking sub-link:', subLinkPath);
-
-            if (currentPath === subLinkPath) {
-                console.log('Match found for sub-link');
-                item.classList.add('current');
-                matchFound = true;
-                break;  // Exit the inner loop if sub-link matches
-            }
-        }
-
-        if (matchFound) break;  // Exit the outer loop if any match is found
     }
 
     // If no match found and we're not on the home page, set Home as current
