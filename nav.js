@@ -18,6 +18,7 @@ function setCurrentPage() {
             const itemPath = link.getAttribute('href');
             if (itemPath === currentPath || 
                 (currentPath.endsWith('/') && itemPath === 'index.html') ||
+                (currentPath.endsWith('.com') && itemPath === 'index.html') ||
                 (currentPath.endsWith('/index.html') && itemPath === 'https://traviswmanning.com/')) {
                 item.classList.add('current');
             } else {
