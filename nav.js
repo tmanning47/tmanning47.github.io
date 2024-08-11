@@ -36,6 +36,16 @@
                     hoverDelay: 0,
                     hideDelay: 350
                 });
+                const navList = $('#nav > ul');
+
+              // Add touch event listeners
+              navList.on('touchstart', '.dropdown', function(event) {
+                $(this).toggleClass('active');
+              });
+
+              navList.on('touchleave', '.dropdown', function(event) {
+                $(this).removeClass('active');
+              });
             }
 
             document.addEventListener('DOMContentLoaded', loadHeader);
