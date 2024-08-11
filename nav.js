@@ -1,6 +1,6 @@
-            <script>
+
             function loadHeader() {
-                fetch('nav.html')
+                fetch('header.html')
                     .then(response => response.text())
                     .then(data => {
                         document.getElementById('nav-placeholder').innerHTML = data;
@@ -39,4 +39,3 @@
             }
 
             document.addEventListener('DOMContentLoaded', loadHeader);
-            </script>
