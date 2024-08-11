@@ -1,17 +1,11 @@
-function isMobileView() {
-    return window.innerWidth <= 840;
-}
-
-function loadHeader() {
+function loadHeader(callback) {
     fetch('nav.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
             setCurrentPage();
-            if (!isMobileView()) {
-                initializeDropdown();
-            }
-            initializeMobileNav();
+            initializeDropdown();
+            if (callback) callback();
         });
 }
 
@@ -46,57 +40,59 @@ function loadHeader() {
             }
 function initializeMobileNav() {
     const $body = $('body');
-    let $navPanel = $('#navPanel');
-    let $titleBar = $('#titleBar');
+    const $navPanel = $('#navPanel');
+    const $titleBar = $('#titleBar');
 
-    // If the elements don't exist, create them
-    if (!$navPanel.length) {
-        $navPanel = $('<div id="navPanel"><nav></nav></div>').appendTo($body);
-    }
-    if (!$titleBar.length) {
-        $titleBar = $('<div id="titleBar"><a href="#navPanel" class="toggle"></a><span class="title"></span></div>').appendTo($body);
-    }
+    // If the elements already exist, remove them
+    if ($navPanel.length) $navPanel.remove();
+    if ($titleBar.length) $titleBar.remove();
 
-    // Update the content
-    $navPanel.find('nav').html($('#nav').html());
-    $titleBar.find('.title').html($('#logo').html());
+    // Title Bar
+    $('<div id="titleBar">' +
+        '<a href="#navPanel" class="toggle"></a>' +
+        '<span class="title">' + $('#logo').html() + '</span>' +
+    '</div>')
+        .appendTo($body);
 
-    // Initialize the panel
-    $navPanel.panel({
-        delay: 500,
-        hideOnClick: true,
-        hideOnSwipe: true,
-        resetScroll: true,
-        resetForms: true,
-        side: 'left',
-        target: $body,
-        visibleClass: 'navPanel-visible'
-    });
+    // Navigation Panel
+    $('<div id="navPanel">' +
+        '<nav>' +
+            $('#nav').html() +
+        '</nav>' +
+    '</div>')
+        .appendTo($body)
+        .panel({
+            delay: 500,
+            hideOnClick: true,
+            hideOnSwipe: true,
+            resetScroll: true,
+            resetForms: true,
+            side: 'left',
+            target: $body,
+            visibleClass: 'navPanel-visible'
+        });
 
-    // Re-bind click events for mobile nav
-    $titleBar.find('.toggle').off('click').on('click', function(e) {
+    // Fix: Re-bind click events for mobile nav
+    $('#titleBar .toggle').on('click', function(e) {
         e.preventDefault();
         $body.toggleClass('navPanel-visible');
     });
-
-    // Show/hide based on screen size
-    if (isMobileView()) {
-        $titleBar.show();
-        $navPanel.show();
-        $('#header').hide();
-    } else {
-        $titleBar.hide();
-        $navPanel.hide();
-        $('#header').show();
-    }
 }
 
-document.addEventListener('DOMContentLoaded', loadHeader);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadHeader(function() {
+        initializeMobileNav();
+    });
+});
 
 let resizeTimer;
 window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(function() {
-        initializeMobileNav();
+        if (window.innerWidth <= 840) {
+            initializeMobileNav();
+        }
     }, 250);
 });
