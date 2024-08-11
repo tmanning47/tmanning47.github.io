@@ -9,17 +9,21 @@ function loadHeader() {
             }
 
 function setCurrentPage() {
-  const currentPath = window.location.pathname;
+  const currentPath = window.location.pathname.replace(/^\//, '');  // Remove leading slash
   const navItems = document.querySelectorAll('#nav > ul > li');
 
   navItems.forEach(item => {
     const link = item.querySelector('a');
     const subItems = item.querySelector('ul');
 
-    // Check for direct match (including empty path for Home)
-    if (link && link.getAttribute('href') === currentPath) {
-      item.classList.add('current');
-      return; // Exit the loop if a direct match is found
+    if (link) {
+      const linkPath = new URL(link.href).pathname.replace(/^\//, '');  // Get path and remove leading slash
+
+      // Check for direct match (including empty path for Home)
+      if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
+        item.classList.add('current');
+        return; // Exit the loop if a direct match is found
+      }
     }
 
     // Check for sub-items
@@ -28,7 +32,7 @@ function setCurrentPage() {
       let hasActiveSubItem = false;
 
       subLinks.forEach(subLink => {
-        const subItemPath = subLink.getAttribute('href');
+        const subItemPath = new URL(subLink.href).pathname.replace(/^\//, '');
         if (subItemPath === currentPath) {
           hasActiveSubItem = true;
         }
@@ -44,7 +48,6 @@ function setCurrentPage() {
     }
   });
 }
-
 
 /* debug current page
 function setCurrentPage() {
