@@ -11,18 +11,20 @@ function loadHeader() {
 function setCurrentPage() {
   const currentPath = window.location.pathname.replace(/^\//, '');  // Remove leading slash
   const navItems = document.querySelectorAll('#nav > ul > li');
+  let activeItemFound = false;
 
   navItems.forEach(item => {
     const link = item.querySelector('a');
     const subItems = item.querySelector('ul');
+    let isCurrentItem = false;
 
     if (link) {
       const linkPath = new URL(link.href).pathname.replace(/^\//, '');  // Get path and remove leading slash
 
       // Check for direct match (including empty path for Home)
       if (linkPath === currentPath || (currentPath === '' && linkPath === 'index.html')) {
-        item.classList.add('current');
-        return; // Exit the loop if a direct match is found
+        isCurrentItem = true;
+        activeItemFound = true;
       }
     }
 
@@ -35,18 +37,30 @@ function setCurrentPage() {
         const subItemPath = new URL(subLink.href).pathname.replace(/^\//, '');
         if (subItemPath === currentPath) {
           hasActiveSubItem = true;
+          activeItemFound = true;
         }
       });
 
       if (hasActiveSubItem) {
-        item.classList.add('current');
-      } else {
-        item.classList.remove('current');
+        isCurrentItem = true;
       }
+    }
+
+    // Set or remove 'current' class
+    if (isCurrentItem && !activeItemFound) {
+      item.classList.add('current');
     } else {
       item.classList.remove('current');
     }
   });
+
+  // If no specific item was found to be active, set Home as current
+  if (!activeItemFound) {
+    const homeItem = document.querySelector('#nav > ul > li:first-child');
+    if (homeItem) {
+      homeItem.classList.add('current');
+    }
+  }
 }
 
 /* debug current page
