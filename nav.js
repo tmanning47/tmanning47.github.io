@@ -19,8 +19,8 @@ function setCurrentPage() {
     if (link) {
       const itemPath = link.getAttribute('href');
 
-      // Check for direct match
-      if (itemPath === currentPath) {
+      // Check for direct match (including empty path for Home)
+      if ((itemPath === currentPath) || (itemPath === '' && currentPath === '/')) {
         item.classList.add('current');
         return; // Exit the loop if a direct match is found
       }
@@ -42,6 +42,7 @@ function setCurrentPage() {
     }
   });
 }
+
 
 
             function initializeDropdown() {
