@@ -28,16 +28,13 @@
                     }
                 });
             }
-function initializeDropdown() {
-  const navList = document.getElementById('nav');
-
-  navList.addEventListener('touchstart', (event) => {
-    const target = event.target;
-    if (target.tagName === 'A' && target.parentNode.classList.contains('dropdown')) {
-      event.preventDefault();
-      target.parentNode.classList.toggle('active');
-    }
-  }, { passive: false }); // Prevent default behavior to prevent scrolling
-}
+            function initializeDropdown() {
+                $('#nav > ul').dropotron({
+                    expandMode: 'hover',
+                    offsetY: -15,
+                    hoverDelay: 0,
+                    hideDelay: 350
+                });
+            }
 
             document.addEventListener('DOMContentLoaded', loadHeader);
