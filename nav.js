@@ -8,10 +8,18 @@ function loadHeader() {
         .then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
             setCurrentPage();
-            if (!isMobileView()) {
-                initializeDropdown();
-            }
+            initializeDropdown();
             initializeMobileNav();
+            // Check viewport size after a short delay
+            setTimeout(function() {
+                if (isMobileView()) {
+                    $('#titleBar, #navPanel').show();
+                    $('#header').hide();
+                } else {
+                    $('#titleBar, #navPanel').hide();
+                    $('#header').show();
+                }
+            }, 100);
         });
 }
 
@@ -59,7 +67,21 @@ function initializeMobileNav() {
     }
 
     // Update the content
-    $navPanel.find('nav').html($('#nav').html());
+    let navHtml = '';
+    $('#nav > ul > li').each(function() {
+        let $this = $(this);
+        navHtml += '<a href="' + $this.find('> a').attr('href') + '">' + $this.find('> a').text() + '</a>';
+        
+        let $subMenu = $this.find('> ul');
+        if ($subMenu.length) {
+            $subMenu.find('> li').each(function() {
+                let $subItem = $(this);
+                navHtml += '<a href="' + $subItem.find('a').attr('href') + '" class="indent-1">' + $subItem.find('a').text() + '</a>';
+            });
+        }
+    });
+    
+    $navPanel.find('nav').html(navHtml);
     $titleBar.find('.title').html($('#logo').html());
 
     // Initialize the panel

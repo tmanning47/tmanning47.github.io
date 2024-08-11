@@ -3358,23 +3358,5 @@ input, select, textarea {
 				padding: 2em 20px;
 				text-align: left;
 			}
-        
-        @media screen and (max-width: 840px) {
-    #header {
-        display: none;
-    }
-    #titleBar, #navPanel {
-        display: block;
-    }
-}
-
-@media screen and (min-width: 841px) {
-    #titleBar, #navPanel {
-        display: none !important;
-    }
-    #header {
-        display: block;
-    }
-}
 
 	}
