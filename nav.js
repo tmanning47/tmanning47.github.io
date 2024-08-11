@@ -15,7 +15,7 @@ function setCurrentPage() {
     const navItems = document.querySelectorAll('#nav > ul > li');
     let matchFound = false;
 
-    navItems.forEach(item => {
+    for (let item of navItems) {
         const link = item.querySelector('a');
         const subItems = item.querySelectorAll('ul li a');
         
@@ -29,27 +29,25 @@ function setCurrentPage() {
                 console.log('Match found for main link');
                 item.classList.add('current');
                 matchFound = true;
-                return;  // Exit the forEach loop if main link matches
+                break;  // Exit the loop if main link matches
             }
         }
 
-        // Check sub-items only if no match has been found yet
-        if (!matchFound) {
-            for (let subLink of subItems) {
-                const subLinkPath = new URL(subLink.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
-                console.log('Checking sub-link:', subLinkPath);
+        // Check sub-items
+        for (let subLink of subItems) {
+            const subLinkPath = new URL(subLink.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
+            console.log('Checking sub-link:', subLinkPath);
 
-                if (currentPath === subLinkPath) {
-                    console.log('Match found for sub-link');
-                    item.classList.add('current');
-                    matchFound = true;
-                    break;  // Exit the for loop if sub-link matches
-                }
+            if (currentPath === subLinkPath) {
+                console.log('Match found for sub-link');
+                item.classList.add('current');
+                matchFound = true;
+                break;  // Exit the inner loop if sub-link matches
             }
         }
 
-        if (matchFound) return;  // Exit the forEach loop if any match is found
-    });
+        if (matchFound) break;  // Exit the outer loop if any match is found
+    }
 
     // If no match found and we're not on the home page, set Home as current
     if (!matchFound && currentPath !== '' && currentPath !== 'index.html') {
