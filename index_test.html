@@ -152,6 +152,7 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+        
             <script>
                 fetch('footer.html')
                 .then(response => response.text())
@@ -159,15 +160,6 @@
                   document.getElementById('footer').innerHTML = data;
                 });
             </script>
-        
-        <script>     
-            $(document).ready(function() {
-              $('.dropdown').dropotron({
-                mode: 'hover', // Change to 'hover' if you prefer hover behavior
-                expandClass: 'show'
-              });
-            });
-        </script>
         
             <script>
             $.get("header.html", function(data){
