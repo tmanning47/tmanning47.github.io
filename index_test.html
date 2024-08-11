@@ -143,11 +143,26 @@
                 });
             </script>
             <script>
-                fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                  document.getElementById('header').innerHTML = data;
-                });
+               fetch('header.html')
+  .then(response => response.text())
+  .then(data => {
+    const headerElement = document.getElementById('header');
+    headerElement.innerHTML = data;   
+
+
+    // Event delegation for dropdown menus
+    const nav = document.getElementById('nav');
+    nav.addEventListener('click', (event) => {
+      const target = event.target;
+      if (target.tagName === 'A' && target.parentNode.classList.contains('dropdown')) {
+        event.preventDefault();
+        target.parentNode.classList.toggle('active');
+      }
+    });
+  })
+  .catch(error => {
+    console.error('Error fetching header:', error);
+  });
             </script>
 
 	</body>
