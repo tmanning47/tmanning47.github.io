@@ -1,5 +1,5 @@
 function isMobileView() {
-    return window.innerWidth <= 840;
+    return window.innerWidth <= 840 || (('ontouchstart' in window) || (navigator.maxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 }
 
 function loadHeader() {
@@ -8,11 +8,8 @@ function loadHeader() {
         .then(data => {
             document.getElementById('nav-placeholder').innerHTML = data;
             setCurrentPage();
-            if (isMobileView()) {
-                initializeMobileNav();
-            } else {
-                initializeDropdown();
-            }
+            initializeDropdown();
+            initializeMobileNav();
             // Add a slight delay to ensure everything is rendered
             setTimeout(checkViewportSize, 100);
         });
@@ -47,6 +44,7 @@ function loadHeader() {
                     hideDelay: 350
                 });
             }
+
 function initializeMobileNav() {
     const $body = $('body');
     let $navPanel = $('#navPanel');
@@ -81,28 +79,29 @@ function initializeMobileNav() {
         e.preventDefault();
         $body.toggleClass('navPanel-visible');
     });
-
-    checkViewportSize();
 }
 
 function checkViewportSize() {
     if (isMobileView()) {
-        if ($('#titleBar').css('display') === 'none') {
-            $('#titleBar, #navPanel').show();
-            $('#header, #nav').hide();
-        }
+        $('#titleBar, #navPanel').show();
+        $('#header').hide();
     } else {
-        if ($('#header').css('display') === 'none') {
-            $('#titleBar, #navPanel').hide();
-            $('#header, #nav').show();
-        }
+        $('#titleBar, #navPanel').hide();
+        $('#header').show();
     }
 }
 
-document.addEventListener('DOMContentLoaded', loadHeader);
 
 let resizeTimer;
 window.addEventListener('resize', function() {
     clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(checkViewportSize, 250);
+    resizeTimer = setTimeout(function() {
+        checkViewportSize();
+    }, 250);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadHeader();
+    // Add this line to check viewport size immediately
+    setTimeout(checkViewportSize, 0);
 });
