@@ -15,25 +15,36 @@ function setCurrentPage() {
     const allNavLinks = document.querySelectorAll('#nav a');
     let matchFound = false;
 
+    console.log('Total nav links found:', allNavLinks.length);
+
     // First, remove 'current' class from all items
-    allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
+    allNavLinks.forEach(link => {
+        const li = link.closest('li');
+        if (li.classList.contains('current')) {
+            console.log('Removing current class from:', link.textContent);
+            li.classList.remove('current');
+        }
+    });
 
     // Check all links, including sub-items
     for (let link of allNavLinks) {
         const linkPath = new URL(link.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
-        console.log('Checking link:', linkPath);
+        console.log('Checking link:', linkPath, 'Text:', link.textContent);
 
         if (currentPath === linkPath || (currentPath === '' && linkPath === 'index.html')) {
-            console.log('Match found:', linkPath);
+            console.log('Match found:', linkPath, 'Text:', link.textContent);
             
             // Mark the immediate parent li as current
-            link.closest('li').classList.add('current');
+            const parentLi = link.closest('li');
+            parentLi.classList.add('current');
+            console.log('Marked as current:', parentLi.textContent);
             
             // Also mark all parent li elements up to the top level
-            let parent = link.closest('li').parentElement;
+            let parent = parentLi.parentElement;
             while (parent && parent !== document.querySelector('#nav > ul')) {
                 if (parent.tagName === 'LI') {
                     parent.classList.add('current');
+                    console.log('Also marked as current:', parent.textContent);
                 }
                 parent = parent.parentElement;
             }
@@ -47,8 +58,17 @@ function setCurrentPage() {
     if (!matchFound && currentPath !== '' && currentPath !== 'index.html') {
         console.log('No match found, setting Home as current');
         const homeItem = document.querySelector('#nav > ul > li:first-child');
-        if (homeItem) homeItem.classList.add('current');
+        if (homeItem) {
+            homeItem.classList.add('current');
+            console.log('Marked Home as current');
+        }
     }
+
+    // Final check
+    console.log('Elements with current class after execution:');
+    document.querySelectorAll('#nav .current').forEach(el => {
+        console.log(el.textContent);
+    });
 }
 
 /* debug current page
