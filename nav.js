@@ -9,71 +9,50 @@ function loadHeader() {
 }
 
 function setCurrentPage() {
-    const currentPath = window.location.pathname.replace(/^\//, '').toLowerCase();
-    console.log('Current path:', currentPath);
+    // Get the current page filename
+    const currentPage = window.location.pathname.split('/').pop().toLowerCase();
+    console.log('Current page:', currentPage);
 
     const allNavLinks = document.querySelectorAll('#nav a');
-    let matchFound = false;
-
     console.log('Total nav links found:', allNavLinks.length);
 
-    // First, remove 'current' class from all items
-    allNavLinks.forEach(link => {
-        const li = link.closest('li');
-        if (li.classList.contains('current')) {
-            console.log('Removing current class from:', link.textContent);
-            li.classList.remove('current');
-        }
+    // Remove 'current' class from all items
+    allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
+
+    // Find the matching link
+    const matchingLink = Array.from(allNavLinks).find(link => {
+        const linkPage = link.getAttribute('href').split('/').pop().toLowerCase();
+        console.log('Checking link:', linkPage, 'Text:', link.textContent);
+        return linkPage === currentPage;
     });
 
-    // Check all links, including sub-items
-    for (let link of allNavLinks) {
-        const linkPath = new URL(link.href, window.location.origin).pathname.replace(/^\//, '').toLowerCase();
-        console.log('Checking link:', linkPath, 'Text:', link.textContent);
-
-        // Skip links that are just "#" or javascript:void(0)
-        if (linkPath === '/' || linkPath.includes('javascript:void(0)')) {
-            console.log('Skipping placeholder link:', link.textContent);
-            continue;
-        }
-
-        if (currentPath === linkPath || (currentPath === '' && linkPath === 'index.html')) {
-            console.log('Match found:', linkPath, 'Text:', link.textContent);
-            
-            // Mark the immediate parent li as current
-            const parentLi = link.closest('li');
-            parentLi.classList.add('current');
-            console.log('Marked as current:', parentLi.textContent);
-            
-            // Also mark all parent li elements up to the top level
-            let parent = parentLi.parentElement;
-            while (parent && parent !== document.querySelector('#nav > ul')) {
-                if (parent.tagName === 'LI') {
-                    parent.classList.add('current');
-                    console.log('Also marked as current:', parent.querySelector('a').textContent);
-                }
-                parent = parent.parentElement;
+    if (matchingLink) {
+        console.log('Match found:', matchingLink.textContent);
+        
+        // Mark the matching link and its parents as current
+        let current = matchingLink.closest('li');
+        while (current && current !== document.querySelector('#nav')) {
+            if (current.tagName === 'LI') {
+                current.classList.add('current');
+                console.log('Marked as current:', current.querySelector('a').textContent);
             }
-
-            matchFound = true;
-            break;
+            current = current.parentElement;
         }
-    }
-
-    // If no match found and we're not on the home page, set Home as current
-    if (!matchFound && currentPath !== '' && currentPath !== 'index.html') {
-        console.log('No match found, setting Home as current');
-        const homeItem = document.querySelector('#nav > ul > li:first-child');
-        if (homeItem) {
-            homeItem.classList.add('current');
+    } else if (currentPage === '' || currentPage === 'index.html') {
+        // If on home page, mark Home as current
+        const homeLink = document.querySelector('#nav > ul > li:first-child');
+        if (homeLink) {
+            homeLink.classList.add('current');
             console.log('Marked Home as current');
         }
+    } else {
+        console.log('No match found');
     }
 
     // Final check
     console.log('Elements with current class after execution:');
     document.querySelectorAll('#nav .current').forEach(el => {
-        console.log(el.textContent);
+        console.log(el.querySelector('a').textContent);
     });
 }
 
