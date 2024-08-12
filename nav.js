@@ -1,3 +1,11 @@
+/*
+					<!-- Nav -->
+						<div id="nav-placeholder"></div> <!-- 	nav insert via nav.html and script -->
+                        
+                        <script src="nav.js"></script>
+                        or
+                        <script src="../nav.js"></script>
+*/
 function loadHeader() {
     fetch('nav.html')
         .then(response => response.text())
