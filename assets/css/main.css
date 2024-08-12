@@ -2598,7 +2598,9 @@ input, select, textarea {
 
 #nav > ul > li.current > a,
 #nav > ul > li.current-parent > a,
-#nav > ul > li a.current {
+#nav > ul > li.current > a,
+#nav > ul > li.current-parent > a,
+#nav a.current {
     font-weight: 600;
     color: #fff;
 }
@@ -2620,6 +2622,8 @@ input, select, textarea {
     background-color: #494949;
     background-image: url("images/bg01.png");
 }
+
+
 
 #nav > ul > li.active a {
     color: #fff;
@@ -2664,6 +2668,13 @@ input, select, textarea {
 .dropotron > li.active > a,
 .dropotron > li:hover > a,
 .dropotron > li > a.current {
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Styles for current items in dropdowns */
+.dropotron > li > a.current,
+.dropotron > li.current > a {
     color: #fff;
     font-weight: 600;
 }

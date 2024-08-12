@@ -32,7 +32,7 @@ function setCurrentPage() {
       if (current.tagName === 'LI') {
         current.classList.add('current');
         
-        // Add 'current-parent' to the immediate parent of a submenu
+        // Add 'current-parent' to the parent of a submenu
         const parentLi = current.parentElement.closest('li');
         if (parentLi) {
           parentLi.classList.add('current-parent');
@@ -48,12 +48,6 @@ function setCurrentPage() {
       homeLink.closest('li').classList.add('current');
     }
   }
-
-  // Expand current submenus
-  const currentSubmenus = document.querySelectorAll('#nav .current > ul, #nav .current-parent > ul');
-  currentSubmenus.forEach(submenu => {
-    submenu.style.display = 'block';
-  });
 }
 
 
