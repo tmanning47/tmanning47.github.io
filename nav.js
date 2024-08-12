@@ -53,32 +53,6 @@ function highlightCurrentAndParents(element) {
   }
 }
 
-
-// Also call the function when the URL changes without a page reload (for single-page applications)
-window.addEventListener('popstate', setCurrentPage);
-
-
-/* debug current page
-function setCurrentPage() {
-  const currentPath = window.location.pathname;
-  const navItems = document.querySelectorAll('#nav > ul > li');
-
-  navItems.forEach(item => {
-    const link = item.querySelector('a');
-    const subItems = item.querySelector('ul');
-
-    console.log('Current Path:', currentPath);
-    console.log('Item:', item);
-    console.log('Link:', link);
-    console.log('Sub-items:', subItems);
-
-    // ... rest of your function
-  });
-}
-*/
-
-
-
             function initializeDropdown() {
                 $('#nav > ul').dropotron({
                     expandMode: 'hover',
@@ -95,3 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setCurrentPage();
     }
 });
+
+// Also call the function when the URL changes without a page reload (for single-page applications)
+window.addEventListener('popstate', setCurrentPage);

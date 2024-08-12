@@ -2636,6 +2636,7 @@ input, select, textarea {
     display: none;
 }
 
+
 /* Style for current items in dropdowns */
 #nav ul ul li.current > a,
 #nav ul ul li.current-parent > a {
@@ -2645,25 +2646,47 @@ input, select, textarea {
 
 /* Additional style for exact current page in dropdowns */
 #nav ul ul li.current > a {
-    background-color: #1abc9c;
+    background-color: #494949; /* Changed from #1abc9c to match your theme */
 }
 
 /* Ensure submenus are not displayed by default */
 #nav ul ul {
     display: none;
+    position: absolute;
+    background-color: #333; /* Add a background color */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add a subtle shadow */
 }
 
-/* Display submenus when parent is hovered or has current/current-parent class */
-#nav li:hover > ul,
-#nav li.current > ul,
-#nav li.current-parent > ul {
+/* Display submenus when parent is hovered */
+#nav li:hover > ul {
     display: block;
 }
 
 /* Ensure current submenu is always visible */
 #nav li.current > ul,
 #nav li.current-parent > ul {
-    display: block !important;
+    display: block;
+}
+
+/* Prevent floating menus */
+#nav ul {
+    position: relative;
+}
+
+#nav ul li {
+    position: relative;
+}
+
+/* Adjust submenu positioning */
+#nav ul ul {
+    left: 100%;
+    top: 0;
+}
+
+/* For top-level menu items, position submenus below */
+#nav > ul > li > ul {
+    left: 0;
+    top: 100%;
 }
 
 /* Dropotron */
