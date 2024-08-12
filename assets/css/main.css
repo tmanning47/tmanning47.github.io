@@ -2636,6 +2636,18 @@ input, select, textarea {
     display: none;
 }
 
+/* Style for current items in dropdowns */
+#nav ul ul li.current > a,
+#nav ul ul li.current-parent > a {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+/* Additional style for exact current page in dropdowns */
+#nav ul ul li.current > a {
+    background-color: #1abc9c;
+}
+
 /* Ensure submenus are not displayed by default */
 #nav ul ul {
     display: none;
@@ -2646,6 +2658,12 @@ input, select, textarea {
 #nav li.current > ul,
 #nav li.current-parent > ul {
     display: block;
+}
+
+/* Ensure current submenu is always visible */
+#nav li.current > ul,
+#nav li.current-parent > ul {
+    display: block !important;
 }
 
 /* Dropotron */
@@ -2681,18 +2699,6 @@ input, select, textarea {
 .dropotron > li > a.current {
     color: #fff;
     font-weight: 600;
-}
-
-/* Style for current items in dropdowns */
-#nav ul ul li.current > a,
-#nav ul ul li.current-parent > a {
-    color: #fff !important;
-    font-weight: 600;
-}
-
-/* Additional style for exact current page in dropdowns */
-#nav ul ul li.current > a {
-    background-color: #1abc9c;
 }
 
 .dropotron.level-0 {

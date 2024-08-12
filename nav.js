@@ -20,34 +20,42 @@ function setCurrentPage() {
 
   // Find the matching link
   const matchingLink = Array.from(allNavLinks).find(link => {
-    return link.getAttribute('href') === currentPage;
+    return link.getAttribute('href') === currentPage || 
+           (currentPage === '' && link.getAttribute('href') === 'index.html');
   });
 
   if (matchingLink) {
-    matchingLink.classList.add('current');
-    let current = matchingLink.closest('li');
-    
-    while (current && !current.matches('#nav')) {
-      if (current.tagName === 'LI') {
-        current.classList.add('current');
-        
-        // Add 'current-parent' to the parent of a submenu
-        const parentLi = current.parentElement.closest('li');
-        if (parentLi) {
-          parentLi.classList.add('current-parent');
-        }
-      }
-      current = current.parentElement;
-    }
+    highlightCurrentAndParents(matchingLink);
   } else if (currentPage === '' || currentPage === 'index.html') {
     // If on home page, mark Home as current
     const homeLink = document.querySelector('#nav > ul > li:first-child > a');
     if (homeLink) {
-      homeLink.classList.add('current');
-      homeLink.closest('li').classList.add('current');
+      highlightCurrentAndParents(homeLink);
     }
   }
 }
+
+function highlightCurrentAndParents(element) {
+  element.classList.add('current');
+  let current = element.closest('li');
+  
+  while (current && !current.matches('#nav')) {
+    if (current.tagName === 'LI') {
+      current.classList.add('current');
+      
+      // Add 'current-parent' to the parent of a submenu
+      const parentLi = current.parentElement.closest('li');
+      if (parentLi) {
+        parentLi.classList.add('current-parent');
+      }
+    }
+    current = current.parentElement;
+  }
+}
+
+
+// Also call the function when the URL changes without a page reload (for single-page applications)
+window.addEventListener('popstate', setCurrentPage);
 
 
 /* debug current page
