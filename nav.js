@@ -9,52 +9,31 @@ function loadHeader() {
 }
 
 function setCurrentPage() {
-    // Get the current page filename
-    const currentPage = window.location.pathname.split('/').pop().toLowerCase();
-    console.log('Current page:', currentPage);
+  const currentPathSegments = window.location.pathname.split('/').filter(segment => segment !== '');
 
-    const allNavLinks = document.querySelectorAll('#nav a');
-    console.log('Total nav links found:', allNavLinks.length);
+  function findCurrentItem(items, pathSegments) {
+    for (const item of items) {
+      const link = item.querySelector('a');
+      const linkPathSegments = link.href.split('/').filter(segment => segment !== '');
 
-    // Remove 'current' class from all items
-    allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
-
-    // Find the matching link
-    const matchingLink = Array.from(allNavLinks).find(link => {
-        const linkPage = link.getAttribute('href').split('/').pop().toLowerCase();
-        console.log('Checking link:', linkPage, 'Text:', link.textContent);
-        return linkPage === currentPage;
-    });
-
-    if (matchingLink) {
-        console.log('Match found:', matchingLink.textContent);
-        
-        // Mark the matching link and its parents as current
-        let current = matchingLink.closest('li');
-        while (current && current !== document.querySelector('#nav')) {
-            if (current.tagName === 'LI') {
-                current.classList.add('current');
-                console.log('Marked as current:', current.querySelector('a').textContent);
-            }
-            current = current.parentElement;
+      if (linkPathSegments.length === pathSegments.length && linkPathSegments.every((segment, index) => segment === pathSegments[index])) {
+        item.classList.add('current');
+        return item;
+      } else if (item.querySelector('ul')) {
+        const childItem = findCurrentItem(item.querySelector('ul').children, pathSegments);
+        if (childItem) {
+          item.classList.add('current'); // Highlight parent item
+          return childItem;
         }
-    } else if (currentPage === '' || currentPage === 'index.html') {
-        // If on home page, mark Home as current
-        const homeLink = document.querySelector('#nav > ul > li:first-child');
-        if (homeLink) {
-            homeLink.classList.add('current');
-            console.log('Marked Home as current');
-        }
-    } else {
-        console.log('No match found');
+      }
     }
+    return null;
+  }
 
-    // Final check
-    console.log('Elements with current class after execution:');
-    document.querySelectorAll('#nav .current').forEach(el => {
-        console.log(el.querySelector('a').textContent);
-    });
+  const navItems = document.querySelectorAll('#nav > ul > li');
+  findCurrentItem(navItems, currentPathSegments);
 }
+
 
 /* debug current page
 function setCurrentPage() {
