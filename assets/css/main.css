@@ -2633,6 +2633,16 @@ input, select, textarea {
                   color: #fff; /* Match the color of your active link */
                 }
 
+                #nav > ul > li.current,
+                #nav > ul > li.current > ul > li {
+                  font-weight: 600;
+                }
+
+                #nav > ul > li.current a,
+                #nav > ul > li.current > ul > li > a {
+                  color: #fff;
+                }
+
 				#nav > ul > li.active.current:before {
 					opacity: 0;
 				}
