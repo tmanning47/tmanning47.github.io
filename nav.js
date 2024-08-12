@@ -7,13 +7,18 @@
         <script src="../nav.js"></script>
 */
 function loadHeader() {
-    fetch('nav.html')
+    const navPlaceholder = document.getElementById('nav-placeholder');
+    if (!navPlaceholder) return;
+
+    const navPath = navPlaceholder.dataset.navPath || 'nav.html';
+    fetch(navPath)
         .then(response => response.text())
         .then(data => {
-            document.getElementById('nav-placeholder').innerHTML = data;
+            navPlaceholder.innerHTML = data;
             initializeDropdown();
-            setCurrentPage();  // Call setCurrentPage after the nav is loaded
-        });
+            setCurrentPage();
+        })
+        .catch(error => console.error('Error loading nav:', error));
 }
 
 function setCurrentPage() {
@@ -28,11 +33,10 @@ function setCurrentPage() {
     allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
 
     // Find the matching link
-    const matchingLink = Array.from(allNavLinks).find(link => {
-        const linkPage = link.getAttribute('href').split('/').pop().toLowerCase();
-        console.log('Checking link:', linkPage, 'Text:', link.textContent);
-        return linkPage === currentPage;
-    });
+const matchingLink = Array.from(allNavLinks).find(link => {
+    const linkPage = link.getAttribute('href').split('/').pop().toLowerCase();
+    return linkPage === currentPage || (currentPage === 'index.html' && linkPage === '');
+});
 
     if (matchingLink) {
         console.log('Match found:', matchingLink.textContent);
@@ -53,9 +57,18 @@ function setCurrentPage() {
             homeLink.classList.add('current');
             console.log('Marked Home as current');
         }
-    } else {
-        console.log('No match found');
-    }
+        }
+        else {
+        // Fallback: highlight the parent directory
+        const parentDir = window.location.pathname.split('/').slice(-2, -1)[0].toLowerCase();
+        const parentLink = Array.from(allNavLinks).find(link => 
+            link.getAttribute('href').toLowerCase().includes(parentDir)
+        );
+        if (parentLink) {
+            parentLink.closest('li').classList.add('current');
+        }
+        }
+}
 
     // Final check
     console.log('Elements with current class after execution:');
