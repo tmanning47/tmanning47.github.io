@@ -25,17 +25,20 @@ function setCurrentPage() {
   });
 
   if (matchingLink) {
-    let current = matchingLink;
-    current.classList.add('current');
+    matchingLink.classList.add('current');
+    let current = matchingLink.closest('li');
     
-    while (current && current !== document.querySelector('#nav')) {
+    while (current && !current.matches('#nav')) {
       if (current.tagName === 'LI') {
         current.classList.add('current');
+        
+        // Add 'current-parent' to the immediate parent of a submenu
+        const parentLi = current.parentElement.closest('li');
+        if (parentLi) {
+          parentLi.classList.add('current-parent');
+        }
       }
       current = current.parentElement;
-      if (current && current.tagName === 'LI') {
-        current.classList.add('current-parent');
-      }
     }
   } else if (currentPage === '') {
     // If on home page, mark Home as current
@@ -45,10 +48,14 @@ function setCurrentPage() {
       homeLink.closest('li').classList.add('current');
     }
   }
+
+  // Expand current submenus
+  const currentSubmenus = document.querySelectorAll('#nav .current > ul, #nav .current-parent > ul');
+  currentSubmenus.forEach(submenu => {
+    submenu.style.display = 'block';
+  });
 }
 
-// Call the function when the page loads
-document.addEventListener('DOMContentLoaded', setCurrentPage);
 
 /* debug current page
 function setCurrentPage() {
