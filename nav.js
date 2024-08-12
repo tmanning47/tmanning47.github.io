@@ -9,31 +9,32 @@ function loadHeader() {
 }
 
 function setCurrentPage() {
-  const currentPathSegments = window.location.pathname.split('/').filter(segment => segment !== '');
+  const currentPage = window.location.pathname.split('/').filter(segment => segment !== '').join('/');
+  const allNavLinks = document.querySelectorAll('#nav a');
 
-  function findCurrentItem(items, pathSegments) {
-    for (const item of items) {
-      const link = item.querySelector('a');
-      const linkPathSegments = link.href.split('/').filter(segment => segment !== '');
+  // Remove 'current' class from all items
+  allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
 
-      if (linkPathSegments.length === pathSegments.length && linkPathSegments.every((segment, index) => segment === pathSegments[index])) {
-        item.classList.add('current');
-        return item;
-      } else if (item.querySelector('ul')) {
-        const childItem = findCurrentItem(item.querySelector('ul').children, pathSegments);
-        if (childItem) {
-          item.classList.add('current'); // Highlight parent item
-          return childItem;
-        }
-      }
+  // Find the matching link
+  const matchingLink = Array.from(allNavLinks).find(link => {
+    const linkPath = link.getAttribute('href').split('/').filter(segment => segment !== '').join('/');
+    return linkPath === currentPage;
+  });
+
+  if (matchingLink) {
+    let current = matchingLink.closest('li');
+    while (current && current !== document.querySelector('#nav')) {
+      current.classList.add('current');
+      current = current.parentElement;
     }
-    return null;
+  } else if (currentPage === '') {
+    // If on home page, mark Home as current
+    const homeLink = document.querySelector('#nav > ul > li:first-child');
+    if (homeLink) {
+      homeLink.classList.add('current');
+    }
   }
-
-  const navItems = document.querySelectorAll('#nav > ul > li');
-  findCurrentItem(navItems, currentPathSegments);
 }
-
 
 /* debug current page
 function setCurrentPage() {
