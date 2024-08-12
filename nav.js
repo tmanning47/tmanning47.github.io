@@ -9,7 +9,7 @@ function loadHeader() {
 }
 
 function setCurrentPage() {
-  const currentPage = window.location.pathname.split('/').filter(segment => segment !== '').join('/');
+  const currentPage = window.location.pathname.split('/').pop();
   const allNavLinks = document.querySelectorAll('#nav a');
 
   // Remove 'current' and 'current-parent' classes from all items
@@ -18,38 +18,28 @@ function setCurrentPage() {
     link.closest('li').classList.remove('current', 'current-parent');
   });
 
-  // Find all matching links (for nested paths)
-  const matchingLinks = Array.from(allNavLinks).filter(link => {
-    const linkPath = link.getAttribute('href').split('/').filter(segment => segment !== '').join('/');
-    return currentPage.startsWith(linkPath);
+  // Find the matching link
+  const matchingLink = Array.from(allNavLinks).find(link => {
+    return link.getAttribute('href') === currentPage;
   });
 
-  if (matchingLinks.length > 0) {
-    // Sort matching links by length (descending) to get the most specific match first
-    matchingLinks.sort((a, b) => b.getAttribute('href').length - a.getAttribute('href').length);
-
-    const exactMatch = matchingLinks.find(link => 
-      link.getAttribute('href').split('/').filter(segment => segment !== '').join('/') === currentPage
-    );
-
-    if (exactMatch) {
-      exactMatch.classList.add('current');
-    }
-
-    matchingLinks.forEach(link => {
-      let current = link.closest('li');
-      while (current && !current.matches('#nav')) {
-        if (current.tagName === 'LI') {
-          if (link === exactMatch) {
-            current.classList.add('current');
-          } else {
-            current.classList.add('current-parent');
-          }
+  if (matchingLink) {
+    matchingLink.classList.add('current');
+    let current = matchingLink.closest('li');
+    
+    while (current && !current.matches('#nav')) {
+      if (current.tagName === 'LI') {
+        current.classList.add('current');
+        
+        // Add 'current-parent' to the parent of a submenu
+        const parentLi = current.parentElement.closest('li');
+        if (parentLi) {
+          parentLi.classList.add('current-parent');
         }
-        current = current.parentElement;
       }
-    });
-  } else if (currentPage === '') {
+      current = current.parentElement;
+    }
+  } else if (currentPage === '' || currentPage === 'index.html') {
     // If on home page, mark Home as current
     const homeLink = document.querySelector('#nav > ul > li:first-child > a');
     if (homeLink) {

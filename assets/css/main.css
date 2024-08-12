@@ -2596,13 +2596,11 @@ input, select, textarea {
     color: #fff;
 }
 
+/* Style for current page in main navigation */
 #nav > ul > li.current > a,
-#nav > ul > li.current-parent > a,
-#nav > ul > li.current > a,
-#nav > ul > li.current-parent > a,
-#nav a.current {
+#nav > ul > li.current-parent > a {
     font-weight: 600;
-    color: #fff;
+    color: #fff !important;
 }
 
 /* Arrow for current main navigation item */
@@ -2636,6 +2634,18 @@ input, select, textarea {
 
 #nav > ul > li > ul {
     display: none;
+}
+
+/* Ensure submenus are not displayed by default */
+#nav ul ul {
+    display: none;
+}
+
+/* Display submenus when parent is hovered or has current/current-parent class */
+#nav li:hover > ul,
+#nav li.current > ul,
+#nav li.current-parent > ul {
+    display: block;
 }
 
 /* Dropotron */
@@ -2674,14 +2684,14 @@ input, select, textarea {
 }
 
 /* Style for current items in dropdowns */
-.dropotron li.current > a,
-.dropotron li.current-parent > a {
-    color: #fff;
+#nav ul ul li.current > a,
+#nav ul ul li.current-parent > a {
+    color: #fff !important;
     font-weight: 600;
 }
 
 /* Additional style for exact current page in dropdowns */
-.dropotron li.current > a {
+#nav ul ul li.current > a {
     background-color: #1abc9c;
 }
 
