@@ -15,25 +15,31 @@ function loadHeader() {
             setCurrentPage();  // Call setCurrentPage after the nav is loaded
         });
 }
-
 function setCurrentPage() {
-    // Get the current page filename
-    const currentPage = window.location.pathname.split('/').pop().toLowerCase();
+    // Get the full path and current page filename
+    const fullPath = window.location.pathname.toLowerCase();
+    let currentPage = fullPath.split('/').pop();
+    
+    // Treat empty string (directory without index.html) as index.html
+    if (currentPage === '' || currentPage === 'index.html') {
+        currentPage = 'index.html';
+    }
+    
     console.log('Current page:', currentPage);
-
+    
     const allNavLinks = document.querySelectorAll('#nav a');
     console.log('Total nav links found:', allNavLinks.length);
-
+    
     // Remove 'current' class from all items
     allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
-
+    
     // Find the matching link
     const matchingLink = Array.from(allNavLinks).find(link => {
         const linkPage = link.getAttribute('href').split('/').pop().toLowerCase();
         console.log('Checking link:', linkPage, 'Text:', link.textContent);
-        return linkPage === currentPage;
+        return linkPage === currentPage || (currentPage === 'index.html' && link.textContent.trim().toLowerCase() === 'home');
     });
-
+    
     if (matchingLink) {
         console.log('Match found:', matchingLink.textContent);
         
@@ -46,24 +52,16 @@ function setCurrentPage() {
             }
             current = current.parentElement;
         }
-    } else if (currentPage === '' || currentPage === 'index.html') {
-        // If on home page, mark Home as current
-        const homeLink = document.querySelector('#nav > ul > li:first-child');
-        if (homeLink) {
-            homeLink.classList.add('current');
-            console.log('Marked Home as current');
-        }
     } else {
         console.log('No match found');
     }
-
+    
     // Final check
     console.log('Elements with current class after execution:');
     document.querySelectorAll('#nav .current').forEach(el => {
         console.log(el.querySelector('a').textContent);
     });
 }
-
 /* debug current page
 function setCurrentPage() {
   const currentPath = window.location.pathname;
