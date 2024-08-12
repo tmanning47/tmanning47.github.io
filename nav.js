@@ -12,8 +12,11 @@ function setCurrentPage() {
   const currentPage = window.location.pathname.split('/').filter(segment => segment !== '').join('/');
   const allNavLinks = document.querySelectorAll('#nav a');
 
-  // Remove 'current' class from all items
-  allNavLinks.forEach(link => link.closest('li').classList.remove('current'));
+  // Remove 'current' and 'current-parent' classes from all items
+  allNavLinks.forEach(link => {
+    link.classList.remove('current');
+    link.closest('li').classList.remove('current', 'current-parent');
+  });
 
   // Find the matching link
   const matchingLink = Array.from(allNavLinks).find(link => {
@@ -22,19 +25,30 @@ function setCurrentPage() {
   });
 
   if (matchingLink) {
-    let current = matchingLink.closest('li');
+    let current = matchingLink;
+    current.classList.add('current');
+    
     while (current && current !== document.querySelector('#nav')) {
-      current.classList.add('current');
+      if (current.tagName === 'LI') {
+        current.classList.add('current');
+      }
       current = current.parentElement;
+      if (current && current.tagName === 'LI') {
+        current.classList.add('current-parent');
+      }
     }
   } else if (currentPage === '') {
     // If on home page, mark Home as current
-    const homeLink = document.querySelector('#nav > ul > li:first-child');
+    const homeLink = document.querySelector('#nav > ul > li:first-child > a');
     if (homeLink) {
       homeLink.classList.add('current');
+      homeLink.closest('li').classList.add('current');
     }
   }
 }
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', setCurrentPage);
 
 /* debug current page
 function setCurrentPage() {
