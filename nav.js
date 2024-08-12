@@ -9,48 +9,22 @@ function loadHeader() {
 }
 
 function setCurrentPage() {
-  const currentPage = window.location.pathname.split('/').pop();
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const allNavLinks = document.querySelectorAll('#nav a');
 
-  // Remove 'current' and 'current-parent' classes from all items
   allNavLinks.forEach(link => {
-    link.classList.remove('current');
-    link.closest('li').classList.remove('current', 'current-parent');
-  });
-
-  // Find the matching link
-  const matchingLink = Array.from(allNavLinks).find(link => {
-    return link.getAttribute('href') === currentPage || 
-           (currentPage === '' && link.getAttribute('href') === 'index.html');
-  });
-
-  if (matchingLink) {
-    highlightCurrentAndParents(matchingLink);
-  } else if (currentPage === '' || currentPage === 'index.html') {
-    // If on home page, mark Home as current
-    const homeLink = document.querySelector('#nav > ul > li:first-child > a');
-    if (homeLink) {
-      highlightCurrentAndParents(homeLink);
-    }
-  }
-}
-
-function highlightCurrentAndParents(element) {
-  element.classList.add('current');
-  let current = element.closest('li');
-  
-  while (current && !current.matches('#nav')) {
-    if (current.tagName === 'LI') {
-      current.classList.add('current');
-      
-      // Add 'current-parent' to the parent of a submenu
-      const parentLi = current.parentElement.closest('li');
-      if (parentLi) {
-        parentLi.classList.add('current-parent');
+    const href = link.getAttribute('href');
+    if (href === currentPage) {
+      link.classList.add('current');
+      let parent = link.parentElement;
+      while (parent && parent.id !== 'nav') {
+        if (parent.tagName === 'LI') {
+          parent.classList.add('current-parent');
+        }
+        parent = parent.parentElement;
       }
     }
-    current = current.parentElement;
-  }
+  });
 }
 
             function initializeDropdown() {

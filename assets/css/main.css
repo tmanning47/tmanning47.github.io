@@ -2596,13 +2596,6 @@ input, select, textarea {
     color: #fff;
 }
 
-/* Style for current page in main navigation */
-#nav > ul > li.current > a,
-#nav > ul > li.current-parent > a {
-    font-weight: 600;
-    color: #fff !important;
-}
-
 /* Arrow for current main navigation item */
 #nav > ul > li.current > a:before,
 #nav > ul > li.current-parent > a:before {
@@ -2636,57 +2629,20 @@ input, select, textarea {
     display: none;
 }
 
+/* Style for current page in main navigation */
+#nav a.current,
+#nav li.current-parent > a {
+    font-weight: bold;
+    color: #fff !important;
+    background-color: #494949;
+}
 
 /* Style for current items in dropdowns */
-#nav ul ul li.current > a,
+#nav ul ul a.current,
 #nav ul ul li.current-parent > a {
+    font-weight: bold;
     color: #fff !important;
-    font-weight: 600;
-}
-
-/* Additional style for exact current page in dropdowns */
-#nav ul ul li.current > a {
-    background-color: #494949; /* Changed from #1abc9c to match your theme */
-}
-
-/* Ensure submenus are not displayed by default */
-#nav ul ul {
-    display: none;
-    position: absolute;
-    background-color: #333; /* Add a background color */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Add a subtle shadow */
-}
-
-/* Display submenus when parent is hovered */
-#nav li:hover > ul {
-    display: block;
-}
-
-/* Ensure current submenu is always visible */
-#nav li.current > ul,
-#nav li.current-parent > ul {
-    display: block;
-}
-
-/* Prevent floating menus */
-#nav ul {
-    position: relative;
-}
-
-#nav ul li {
-    position: relative;
-}
-
-/* Adjust submenu positioning */
-#nav ul ul {
-    left: 100%;
-    top: 0;
-}
-
-/* For top-level menu items, position submenus below */
-#nav > ul > li > ul {
-    left: 0;
-    top: 100%;
+    background-color: #494949;
 }
 
 /* Dropotron */
