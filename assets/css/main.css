@@ -2620,10 +2620,18 @@ input, select, textarea {
 					#nav > ul > li.current a {
 						color: #fff;
 					}
-
+/*
 				#nav > ul > li.active a {
 					color: #fff;
 				}
+*/
+                #nav > ul > li.current > a {
+                    color: #fff; /* Match the color of your active link */
+                }
+
+                #nav > ul > li.current > ul > li > a {
+                  color: #fff; /* Match the color of your active link */
+                }
 
 				#nav > ul > li.active.current:before {
 					opacity: 0;
