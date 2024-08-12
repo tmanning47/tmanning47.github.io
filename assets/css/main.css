@@ -2605,6 +2605,7 @@ input, select, textarea {
     color: #fff;
 }
 
+/* Arrow for current main navigation item */
 #nav > ul > li.current > a:before,
 #nav > ul > li.current-parent > a:before {
     -moz-transform: rotateZ(45deg);
@@ -2672,11 +2673,16 @@ input, select, textarea {
     font-weight: 600;
 }
 
-/* Styles for current items in dropdowns */
-.dropotron > li > a.current,
-.dropotron > li.current > a {
+/* Style for current items in dropdowns */
+.dropotron li.current > a,
+.dropotron li.current-parent > a {
     color: #fff;
     font-weight: 600;
+}
+
+/* Additional style for exact current page in dropdowns */
+.dropotron li.current > a {
+    background-color: #1abc9c;
 }
 
 .dropotron.level-0 {
