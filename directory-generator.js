@@ -13,11 +13,11 @@ function generateDirectory(navContent) {
     const navDoc = parser.parseFromString(navContent, 'text/html');
     const navElement = navDoc.querySelector('#nav');
 
-    return generateList(navElement.querySelector('ul'), 2);
+    return generateList(navElement.querySelector('ul'), 0);
 }
 
-function generateList(ul, headerLevel) {
-    let content = '';
+function generateList(ul, depth) {
+    let content = '<div class="indent-' + depth + '">';
     const items = ul.children;
 
     for (let item of items) {
@@ -27,17 +27,18 @@ function generateList(ul, headerLevel) {
             const text = link.textContent.trim();
 
             if (href && href !== '#') {
-                content += `<h${headerLevel}><a href="${href}"${link.getAttribute('target') ? ` target="${link.getAttribute('target')}"` : ''}>${text}</a></h${headerLevel}>`;
+                content += `<p><a href="${href}"${link.getAttribute('target') ? ` target="${link.getAttribute('target')}"` : ''}>${text}</a></p>`;
             } else {
-                content += `<h${headerLevel}>${text}</h${headerLevel}>`;
+                content += `<p><strong>${text}</strong></p>`;
             }
 
             const subUl = item.querySelector(':scope > ul');
             if (subUl) {
-                content += generateList(subUl, headerLevel + 1);
+                content += generateList(subUl, depth + 1);
             }
         }
     }
 
+    content += '</div>';
     return content;
 }
