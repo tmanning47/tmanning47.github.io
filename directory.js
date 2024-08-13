@@ -2,19 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('nav.html')
         .then(response => response.text())
         .then(data => {
-            const parser = new DOMParser();
-            const navDoc = parser.parseFromString(data, 'text/html');
-            const navElement = navDoc.querySelector('#nav');
-
-            if (navElement) {
-                const directoryContent = generateDirectory(navElement);
-                document.getElementById('directory-content').innerHTML = directoryContent;
-            }
+            const directoryContent = generateDirectory(data);
+            document.getElementById('directory-content').innerHTML = directoryContent;
         })
         .catch(error => console.error('Error:', error));
 });
 
-function generateDirectory(navElement) {
+function generateDirectory(navContent) {
+    const parser = new DOMParser();
+    const navDoc = parser.parseFromString(navContent, 'text/html');
+    const navElement = navDoc.querySelector('#nav');
+
     let content = '';
     const topLevelItems = navElement.querySelectorAll(':scope > ul > li');
 
@@ -36,12 +34,16 @@ function generateSubList(element, headerLevel) {
     items.forEach(item => {
         const link = item.querySelector(':scope > a');
         if (link) {
-            content += `<li><a href="${link.getAttribute('href')}"${link.getAttribute('target') ? ` target="${link.getAttribute('target')}"` : ''}>${link.textContent}</a></li>`;
+            const href = link.getAttribute('href');
+            const target = link.getAttribute('target');
+            content += `<li><a href="${href}"${target ? ` target="${target}"` : ''}>${link.textContent}</a>`;
             
             if (item.querySelector('ul')) {
                 content += `<h${headerLevel}>${link.textContent}</h${headerLevel}>`;
                 content += generateSubList(item, headerLevel + 1);
             }
+            
+            content += '</li>';
         }
     });
 
