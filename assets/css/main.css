@@ -2552,10 +2552,11 @@ input, select, textarea {
 				border: 0;
 			}
 
-#nav-container {
+#header {
     position: sticky;
-    top: 0;
+    top: -100px; /* Adjust this value based on your logo's height */
     z-index: 1000;
+    transition: top 0.3s;
 }
 
 #nav {
@@ -2580,10 +2581,7 @@ input, select, textarea {
     left: 0;
 }
 
-/* Adjust this value based on your actual header height */
-#header {
-    padding-bottom: 0.75em;
-}
+/* Keep your existing #nav styles */
 
 
 		#nav > ul {
