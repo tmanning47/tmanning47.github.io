@@ -1,5 +1,5 @@
 window.addEventListener('scroll', function() {
-    var header = document.getElementById('nav');
+    var header = document.getElementById('header');
     var logo = document.getElementById('logo');
     if (window.pageYOffset > logo.offsetHeight) {
         header.style.top = '0';
