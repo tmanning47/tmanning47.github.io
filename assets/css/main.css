@@ -2556,13 +2556,9 @@ input, select, textarea {
     position: sticky;
     top: 0;
     z-index: 1000;
-    width: 100%;
 }
 
 #nav {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
     cursor: default;
     background-color: #333;
     background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
@@ -2583,6 +2579,12 @@ input, select, textarea {
     bottom: -0.75em;
     left: 0;
 }
+
+/* Adjust this value based on your actual header height */
+#header {
+    padding-bottom: 0.75em;
+}
+
 
 		#nav > ul {
 			margin: 0;
