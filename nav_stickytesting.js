@@ -92,34 +92,30 @@ function setCurrentPage() {
                     hideDelay: 350
                 });
             }
+
 function initStickyNav() {
     var navbar = document.getElementById("nav");
-    var header = document.getElementById("header");
     
-    if (!navbar || !header) {
-        console.error("Navigation or header element not found");
+    if (!navbar) {
+        console.error("Navigation element not found");
         return;
     }
 
-    var headerBottom = header.offsetTop + header.offsetHeight;
-    var navbarHeight = navbar.offsetHeight;
+    var banner = document.querySelector('.banner');  // Adjust this selector to match your banner class
+    var bannerHeight = banner ? banner.offsetHeight : 0;
 
     function makeNavSticky() {
-        if (window.pageYOffset > headerBottom - navbarHeight) {
+        if (window.pageYOffset > bannerHeight) {
             navbar.classList.add("sticky");
-            document.body.style.paddingTop = navbarHeight + "px";
+            document.body.classList.add("has-sticky-nav");
         } else {
             navbar.classList.remove("sticky");
-            document.body.style.paddingTop = "0";
+            document.body.classList.remove("has-sticky-nav");
         }
     }
 
     window.addEventListener('scroll', makeNavSticky);
-    window.addEventListener('resize', () => {
-        headerBottom = header.offsetTop + header.offsetHeight;
-        navbarHeight = navbar.offsetHeight;
-        makeNavSticky();
-    });
+    window.addEventListener('resize', makeNavSticky);  // Handle window resizing
     makeNavSticky(); // Run once to set initial state
 }
 
