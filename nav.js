@@ -103,13 +103,23 @@ function initStickyNav() {
 
     var headerBottom = header.offsetTop + header.offsetHeight;
     var navbarHeight = navbar.offsetHeight;
+    var offset = 5; // Adjust this value to fine-tune when the nav becomes sticky
 
     function makeNavSticky() {
-        if (window.pageYOffset > headerBottom - navbarHeight) {
-            navbar.classList.add("sticky");
-            document.body.style.paddingTop = navbarHeight + "px";
+        if (window.pageYOffset > headerBottom - navbarHeight - offset) {
+            if (!navbar.classList.contains("sticky")) {
+                navbar.style.top = `-${navbarHeight}px`;
+                navbar.classList.add("sticky");
+                document.body.style.paddingTop = navbarHeight + "px";
+                setTimeout(() => {
+                    navbar.style.transition = "top 0.3s ease-in-out";
+                    navbar.style.top = "0px";
+                }, 50);
+            }
         } else {
             navbar.classList.remove("sticky");
+            navbar.style.transition = "";
+            navbar.style.top = "";
             document.body.style.paddingTop = "0";
         }
     }
