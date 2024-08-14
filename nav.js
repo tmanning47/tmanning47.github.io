@@ -13,6 +13,7 @@ function loadHeader() {
             document.getElementById('nav-placeholder').innerHTML = data;
             initializeDropdown();
             setCurrentPage();  // Call setCurrentPage after the nav is loaded
+            initStickyNav();  // Initialize sticky nav after loading
         });
 }
 function setCurrentPage() {
@@ -92,10 +93,33 @@ function setCurrentPage() {
                 });
             }
 
+function initStickyNav() {
+    var navbar = document.getElementById("nav");
+    
+    if (!navbar) {
+        console.error("Navigation element not found");
+        return;
+    }
+
+    var sticky = navbar.offsetTop;
+
+    function makeNavSticky() {
+        if (window.pageYOffset >= sticky) {
+            navbar.classList.add("sticky")
+        } else {
+            navbar.classList.remove("sticky");
+        }
+    }
+
+    window.addEventListener('scroll', makeNavSticky);
+    makeNavSticky(); // Run once to set initial state
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     loadHeader();
     // In case the nav is already in the DOM:
     if (document.getElementById('nav')) {
         setCurrentPage();
+        initStickyNav();
     }
 });
