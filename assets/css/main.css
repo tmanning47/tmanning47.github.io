@@ -2626,11 +2626,20 @@ input, select, textarea {
   padding: 16px;
 }
 
-/* The sticky class is added to the navbar with JS when it reaches its scroll position */
 .sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+   right: 0;
+   width: 100%;
+   z-index: 1000;  /* Increased z-index to ensure it's above other elements */
+   background: #your-nav-background-color;  /* Match your nav's background color */
+   box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* Optional: adds a subtle shadow for visual separation */
+}
+
+/* Adjust the body padding when nav is sticky to prevent content jump */
+body.has-sticky-nav {
+   padding-top: 60px;  /* Adjust this value to match your nav height */
 }
 
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */

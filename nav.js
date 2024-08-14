@@ -101,17 +101,21 @@ function initStickyNav() {
         return;
     }
 
-    var sticky = navbar.offsetTop;
+    var banner = document.querySelector('.banner');  // Adjust this selector to match your banner class
+    var bannerHeight = banner ? banner.offsetHeight : 0;
 
     function makeNavSticky() {
-        if (window.pageYOffset >= sticky) {
-            navbar.classList.add("sticky")
+        if (window.pageYOffset > bannerHeight) {
+            navbar.classList.add("sticky");
+            document.body.classList.add("has-sticky-nav");
         } else {
             navbar.classList.remove("sticky");
+            document.body.classList.remove("has-sticky-nav");
         }
     }
 
     window.addEventListener('scroll', makeNavSticky);
+    window.addEventListener('resize', makeNavSticky);  // Handle window resizing
     makeNavSticky(); // Run once to set initial state
 }
 
