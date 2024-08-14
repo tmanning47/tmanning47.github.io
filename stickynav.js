@@ -26,10 +26,10 @@ function initStickyNav() {
     myFunction();
 }
 
-// Call this function after your nav has been loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Assuming you're using jQuery to load the nav
-    $("#nav-placeholder").load("nav.html", function() {
+document.addEventListener('DOMContentLoaded', () => {
+    loadHeader();
+    // In case the nav is already in the DOM:
+    if (document.getElementById('nav')) {
         initStickyNav();
-    });
+    }
 });
