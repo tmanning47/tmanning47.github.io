@@ -2552,7 +2552,6 @@ input, select, textarea {
 				border: 0;
 			}
 #nav {
-        transition: top 0.3s ease-in-out;
         cursor: default;
         background-color: #333;
         background-image: -moz-linear-gradient(top, rgba(0,0,0,0), rgba(0,0,0,0.3)), url("images/bg01.png");
