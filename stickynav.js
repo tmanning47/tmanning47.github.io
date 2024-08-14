@@ -1,9 +1,17 @@
-window.addEventListener('scroll', function() {
-    var header = document.getElementById('header');
-    var logo = document.getElementById('logo');
-    if (window.pageYOffset > logo.offsetHeight) {
-        header.style.top = '0';
-    } else {
-        header.style.top = '-100px'; // Should match the initial top value in CSS
-    }
-});
+// When the user scrolls the page, execute myFunction
+window.onscroll = function() {myFunction()};
+
+// Get the navbar
+var navbar = document.getElementById("nav");
+
+// Get the offset position of the navbar
+var sticky = navbar.offsetTop;
+
+// Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+  if (window.scrollY >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
