@@ -3203,14 +3203,14 @@ input, select, textarea {
 				-ms-transform: translateX(275px);
 				transform: translateX(275px);
 			}
-
+/*
 			body.navPanel-visible #titleBar {
 				-moz-transform: translateX(275px);
 				-webkit-transform: translateX(275px);
 				-ms-transform: translateX(275px);
 				transform: translateX(275px);
 			}
-
+*/
 			body.navPanel-visible #navPanel {
 				-moz-transform: translateX(0);
 				-webkit-transform: translateX(0);
