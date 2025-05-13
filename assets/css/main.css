@@ -185,6 +185,8 @@ input, select, textarea {
 		padding: 1em 0 1em 2em;
 	}
 
+
+
 /* Container */
 
 	.container {
@@ -2528,6 +2530,10 @@ input, select, textarea {
 			width: 30%;
 			margin: 0;
 		}
+
+#titleBar {
+  display: none !important;
+}
 
 /* Header */
 
