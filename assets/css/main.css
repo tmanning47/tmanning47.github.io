@@ -2786,6 +2786,10 @@ body.has-sticky-nav {
 
 	#footer {
 		text-align: center;
+					-moz-justify-content: center;
+					-webkit-justify-content: center;
+					-ms-justify-content: center;
+					justify-content: center;
 		padding: 4em 0 8em 0;
 	}
 
