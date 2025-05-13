@@ -5,7 +5,7 @@
             <a href="#">Directory</a>
             <ul>
                 <li><a href="directory.html">Directory - Pages</a></li>
-                <li><a href="projects.html">Projects</a></li>
+<!--  hide      <li><a href="projects.html">Projects</a></li>    -->
                 <li>
                     <a href="#">Gaming</a>
                     <ul>
@@ -74,7 +74,7 @@
                             <a href="#">About Me</a>
                             <ul>
                                 <li><a href="aboutme.html">About Me</a></li>
-                                <li><a href="websiteinfo.html">Website Info</a></li>
+ <!--  hidden                   <li><a href="websiteinfo.html">Website Info</a></li>  -->
                                 <li><a href="career.html">Work & Career</a></li>
                                 <li><a href="resume.html">Resume</a></li>
                             </ul>
