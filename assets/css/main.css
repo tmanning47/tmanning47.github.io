@@ -2786,10 +2786,6 @@ body.has-sticky-nav {
 
 	#footer {
 		text-align: center;
-					-moz-justify-content: center;
-					-webkit-justify-content: center;
-					-ms-justify-content: center;
-					justify-content: center;
 		padding: 4em 0 8em 0;
 	}
 
@@ -2802,14 +2798,7 @@ body.has-sticky-nav {
 				color: #2f2f2f;
 				border-bottom-color: transparent;
 			}
-				#footer form .actions {
-					-moz-justify-content: center;
-					-webkit-justify-content: center;
-					-ms-justify-content: center;
-					justify-content: center;
-					width: 100%;
-					margin-left: 0;
-				}
+				
 		#footer .container {
 			margin-bottom: 4em;
 		}
